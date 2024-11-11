@@ -20,7 +20,7 @@ export function Error({ error }) {
         return {
           summary: 'Error: redacted',
           message:
-            'This page could not be found. It either doesn’t exist or was deleted. Or perhaps you don’t exist and this webpage couldn’t find you.',
+            'This page could not be found. It either doesn’t exist or was deleted.',
         };
       case 405:
         return {
@@ -121,39 +121,6 @@ export function Error({ error }) {
                   </Button>
                 )}
               </div>
-            </div>
-
-            <div className={styles.videoContainer} data-visible={visible}>
-              <Image
-                reveal
-                cover
-                noPauseButton
-                delay={600}
-                className={styles.video}
-                src={flatlined ? flatlineVideo : notFoundVideo}
-                placeholder={flatlined ? flatlinePoster : notFoundPoster}
-              />
-              {flatlined ? (
-                <a
-                  className={styles.credit}
-                  data-visible={visible}
-                  href="https://www.imdb.com/title/tt0318871/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Animation from Berserk (1997)
-                </a>
-              ) : (
-                <a
-                  className={styles.credit}
-                  data-visible={visible}
-                  href="https://www.imdb.com/title/tt0113568/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Animation from Ghost in the Shell (1995)
-                </a>
-              )}
             </div>
           </>
         )}

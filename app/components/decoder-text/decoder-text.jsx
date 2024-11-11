@@ -40,7 +40,7 @@ export const DecoderText = memo(
     const output = useRef([{ type: CharType.Glyph, value: '' }]);
     const container = useRef();
     const reduceMotion = useReducedMotion();
-    const decoderSpring = useSpring(0, { stiffness: 8, damping: 5 });
+    const decoderSpring = useSpring(0, { stiffness: 7, damping: 6 });
 
     useEffect(() => {
       const containerInstance = container.current;
