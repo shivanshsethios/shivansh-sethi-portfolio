@@ -192,7 +192,7 @@ export const Contact = () => {
               icon="send"
               type="submit"
             >
-              Send message
+              <DecoderText delay={800} text={'Send Message'} />
             </Button>
           </Form>
         )}

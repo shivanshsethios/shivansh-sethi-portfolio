@@ -13,6 +13,7 @@ import { cssProps, media } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
 import katakana from './katakana.svg';
 import styles from './project-summary.module.css';
+import { DecoderText } from '~/components/decoder-text';
 
 const Model = lazy(() =>
   import('~/components/model').then(module => ({ default: module.Model }))
@@ -58,7 +59,7 @@ export function ProjectSummary({
         data-device={device}
         viewBox="0 0 751 136"
       >
-        <use href={`${katakana}#katakana-project`} />
+        <use href={`${katakana}#aiotize-project`} />
       </svg>
     );
   }
@@ -73,9 +74,9 @@ export function ProjectSummary({
             collapsed={!visible}
             collapseDelay={1000}
           />
-          <span className={styles.indexNumber} data-visible={visible}>
-            {indexText}
-          </span>
+                <div className={styles.tagText} data-visible={visible}>
+          <DecoderText text="Aiotize" start={visible} delay={500} />
+          </div>
         </div>
         <Heading
           level={3}
@@ -91,7 +92,7 @@ export function ProjectSummary({
         </Text>
         <div className={styles.button} data-visible={visible}>
           <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
-            {buttonText}
+            <DecoderText text={buttonText} start={visible} delay={500} />
           </Button>
         </div>
       </div>

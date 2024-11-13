@@ -11,6 +11,7 @@ import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
 import { Footer } from '~/components/footer';
+import { Section } from '~/components/section';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { Profile } from './profile';
@@ -18,6 +19,7 @@ import { ProjectSummary } from './project-summary';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
+import Timeline from "./Timeline";
 
 // Prefetch draco decoader wasm
 export const links = () => {
@@ -41,7 +43,7 @@ export const links = () => {
 
 export const meta = () => {
   return baseMeta({
-    title: 'Designer + Developer',
+    title: '',
     description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
   });
 };
@@ -51,12 +53,11 @@ export const Home = () => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
-  const projectTwo = useRef();
-  const projectThree = useRef();
   const details = useRef();
+  const timeline = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [intro, projectOne, details, timeline];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -91,6 +92,11 @@ export const Home = () => {
     };
   }, [visibleSections]);
 
+  const onCallback = () => {
+    console.log('Timeline element crossed the middle of the screen!');
+  };
+
+
   return (
     <div className={styles.home}>
       <Intro
@@ -99,13 +105,13 @@ export const Home = () => {
         scrollIndicatorHidden={scrollIndicatorHidden}
       />
       <ProjectSummary
-        id="project-1"
+        id="aiotize"
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
+        title="Revolutionizing IoT Solutions"
+        description="Empowering businesses with cutting-edge IoT technology for smarter operations"
+        buttonText="Know More"
         buttonLink="/projects/smart-sparrow"
         model={{
           type: 'laptop',
@@ -118,56 +124,22 @@ export const Home = () => {
           ],
         }}
       />
-      <ProjectSummary
-        id="project-2"
-        alternate
-        sectionRef={projectTwo}
-        visible={visibleSections.includes(projectTwo.current)}
-        index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
-        buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
-        model={{
-          type: 'phone',
-          alt: 'App login screen',
-          textures: [
-            {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
-            },
-            {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-3"
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
-        model={{
-          type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      />
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
-        id="details"
+        id="aboutme"
       />
+      <Section
+      className={styles.profile}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      as="section"
+      id="timeline"
+      ref={timeline}
+      // aria-labelledby={titleId}
+      tabIndex={-1}
+    >
+      <Timeline /></Section>
       <Footer />
     </div>
   );

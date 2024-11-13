@@ -112,7 +112,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               </Heading>
             </header>
             <RouterLink
-              to="/#project-1"
+              to="/#aiotize"
               className={styles.scrollIndicator}
               data-status={status}
               data-hidden={scrollIndicatorHidden}
@@ -121,7 +121,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               <VisuallyHidden>Scroll to projects</VisuallyHidden>
             </RouterLink>
             <RouterLink
-              to="/#project-1"
+              to="/#aiotize"
               className={styles.mobileScrollIndicator}
               data-status={status}
               data-hidden={scrollIndicatorHidden}

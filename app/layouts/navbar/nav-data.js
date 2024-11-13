@@ -2,16 +2,12 @@ import config from '~/config.json';
 
 export const navLinks = [
   {
-    label: 'Projects',
-    pathname: '/#project-1',
+    label: 'Aiotize',
+    pathname: '/#aiotize',
   },
   {
     label: 'About Me',
-    pathname: '/#details',
-  },
-  {
-    label: 'Experience',
-    pathname: '/#details',
+    pathname: '/#aboutme',
   },
   {
     label: 'Articles',
@@ -27,12 +23,12 @@ export const socialLinks = [
   {
     label: 'Linkedin',
     url: `https://www.linkedin.com/in/${config.linkedin}`,
-    icon: 'bluesky',
+    icon: 'linkedin',
   },
   {
-    label: 'Figma',
-    url: `https://www.figma.com/${config.figma}`,
-    icon: 'figma',
+    label: 'X',
+    url: `https://x.com/shivanshsethi13`,
+    icon: 'x',
   },
   {
     label: 'Github',

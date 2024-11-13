@@ -56,7 +56,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 href="/contact"
                 icon="send"
               >
-                Send me a message
+                <DecoderText text="Send me a message" start={visible} delay={500} />
               </Button>
             </div>
             <div className={styles.column}>
@@ -68,8 +68,9 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   collapseDelay={1000}
                 />
                 <div className={styles.tagText} data-visible={visible}>
-                  About me
+                <DecoderText text="About me" start={visible} delay={500} />
                 </div>
+
               </div>
               <div className={styles.image}>
                 <Image
