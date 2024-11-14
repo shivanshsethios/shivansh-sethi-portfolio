@@ -182,8 +182,124 @@
     position: absolute;
     width: 100%;
     right: -36%;
+    bottom: 19%;
+    transform: translateY(50%);
+
+    @media (--mediaTablet) {
+      width: 80%;
+      right: -10%;
+      bottom: 18%;
+    }
+
+    @media (--mediaMobile) {
+      right: 0;
+    }
+  }
+
+  &[data-device='phone'] {
+    position: absolute;
+    bottom: 23%;
+    transform: translateY(50%);
+    width: 100%;
+    transition-delay: 800ms;
+
+    @media (--mediaTablet) {
+      width: 80%;
+      bottom: 23%;
+    }
+  }
+}
+
+.svg2 {
+  opacity: 0;
+  transition: opacity 1200ms ease 1400ms;
+  fill: var(--textTitle);
+
+  &[data-visible='true'] {
+    opacity: var(--opacity);
+  }
+
+  &[data-device='laptop'] {
+    position: absolute;
+    width: 70%;
+    right: -10%;
     bottom: 24%;
     transform: translateY(50%);
+
+    @media (--mediaTablet) {
+      width: 80%;
+      right: -10%;
+      bottom: 18%;
+    }
+
+    @media (--mediaMobile) {
+      right: 0;
+    }
+  }
+
+  &[data-device='phone'] {
+    position: absolute;
+    bottom: 23%;
+    transform: translateY(50%);
+    width: 100%;
+    transition-delay: 800ms;
+
+    @media (--mediaTablet) {
+      width: 80%;
+      bottom: 23%;
+    }
+  }
+}
+.svg3 {
+  opacity: 0;
+  transition: opacity 1200ms ease 1400ms;
+  fill: var(--textTitle);
+
+  &[data-visible='true'] {
+    opacity: var(--opacity);
+  }
+
+  .custom-button-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px; /* Adjust to match button padding */
+    background-color: #007bff; /* Button background color */
+    color: #ffffff; /* Button text color */
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px; /* Rounded corners if needed */
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .custom-button-link:hover {
+    background-color: #0056b3; /* Hover background color */
+  }
+  
+  .text-wrapper {
+    display: inline-block;
+  }
+  
+  .icon {
+    display: inline-block;
+    margin-left: 8px; /* Space between text and icon */
+    transition: transform 0.3s;
+  }
+  
+  .custom-button-link:hover .icon {
+    transform: translateX(4px); /* Shift icon on hover */
+  }
+  
+  .arrow-right-icon {
+    font-size: 16px; /* Adjust size as needed */
+  }
+
+  &[data-device='laptop'] {
+    position: absolute;
+    width: 70%;
+    right: -10%;
+    bottom: 15%;
+    transform: translateY(105%);
 
     @media (--mediaTablet) {
       width: 80%;

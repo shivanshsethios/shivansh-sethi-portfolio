@@ -1,22 +1,35 @@
-import React from 'react';
-import { DecoderText } from '~/components/decoder-text';
-import { Heading } from '~/components/heading';
+import React, { useRef, useEffect } from 'react';
 
 const TimelineItem = ({ date, title, description, company, location, imgSrc }) => {
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.classList.contains("timeline-item--active")) {
+            entry.target.classList.add("timeline-item--active");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="timeline-item" data-text="FATHER OF THE TURKS">
+    <div className="timeline-item" data-text={date} ref={itemRef}>
       <div className="timeline__content">
-        {/* <h6 className="timeline__content-title">{title}</h6> */}
-        <Heading
-          level={3}
-          as="h2"
-          // className="timeline__content-title"
-          data-visible={true}
-          id={title}
-        >
-          {title}
-        </Heading>
-        <h2 className="timeline__content-title">{date}</h2>
+        <h2 className="timeline__content-title">{title}</h2>
         <p className="timeline__content-desc">{description}</p>
       </div>
     </div>

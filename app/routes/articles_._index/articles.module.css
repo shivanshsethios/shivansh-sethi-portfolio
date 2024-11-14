@@ -16,9 +16,8 @@
   --verticalPadding: var(--space4XL);
 
   max-width: 1800px;
-  display: grid;
+  display: flex;
   align-items: start;
-  grid-template-columns: 1fr 55%;
   padding-top: var(--verticalPadding);
   padding-bottom: var(--space4XL);
   padding-left: var(--space3XL);

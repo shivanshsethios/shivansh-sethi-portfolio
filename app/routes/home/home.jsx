@@ -20,6 +20,7 @@ import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
 import Timeline from "./Timeline";
+import TestimonialSlider from './TestimonialSlider';
 
 // Prefetch draco decoader wasm
 export const links = () => {
@@ -55,9 +56,11 @@ export const Home = () => {
   const projectOne = useRef();
   const details = useRef();
   const timeline = useRef();
+  const testimonials = useRef();
+  const footer = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, details, timeline];
+    const sections = [intro, projectOne, details, timeline, testimonials, footer];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -112,7 +115,7 @@ export const Home = () => {
         title="Revolutionizing IoT Solutions"
         description="Empowering businesses with cutting-edge IoT technology for smarter operations"
         buttonText="Know More"
-        buttonLink="/projects/smart-sparrow"
+        buttonLink="https://aiotize.com/"
         model={{
           type: 'laptop',
           alt: 'Smart Sparrow lesson builder',
@@ -139,8 +142,32 @@ export const Home = () => {
       // aria-labelledby={titleId}
       tabIndex={-1}
     >
-      <Timeline /></Section>
+      <Timeline />
+      </Section>
+      <Section
+      className={styles.profile}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      as="section"
+      id="testimonials"
+      ref={testimonials}
+      // aria-labelledby={titleId}
+      tabIndex={-1}
+    >
+      <TestimonialSlider />
+      </Section>
+      <Section
+      className={styles.profile}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      as="section"
+      id="footer"
+      ref={footer}
+      // aria-labelledby={titleId}
+      tabIndex={-1}
+    >
       <Footer />
+      </Section>
     </div>
   );
 };

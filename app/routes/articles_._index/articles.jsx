@@ -78,17 +78,9 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
             <Button secondary iconHoverShift icon="chevron-right" as="div">
               Read article
             </Button>
-            <Text className={styles.timecode} size="s">
-              {timecode}
-            </Text>
           </div>
         </div>
       </RouterLink>
-      {featured && (
-        <Text aria-hidden className={styles.postTag} size="s">
-          477
-        </Text>
-      )}
     </article>
   );
 }
@@ -123,9 +115,6 @@ function SkeletonPost({ index }) {
             <Button secondary iconHoverShift icon="chevron-right" as="div">
               Read more
             </Button>
-            <Text className={styles.timecode} size="s">
-              00:00:00:00
-            </Text>
           </div>
         </div>
       </div>
@@ -154,7 +143,7 @@ export function Articles() {
       {posts.map(({ slug, ...post }, index) => (
         <ArticlesPost key={slug} slug={slug} index={index} {...post} />
       ))}
-      {Array(2)
+      {Array(1)
         .fill()
         .map((skeleton, index) => (
           <SkeletonPost key={index} index={index} />
@@ -162,21 +151,17 @@ export function Articles() {
     </div>
   );
 
-  const featuredPost = <ArticlesPost {...featured} />;
-
   return (
     <article className={styles.articles}>
       <Section className={styles.content}>
         {!isSingleColumn && (
           <div className={styles.grid}>
             {postList}
-            {featuredPost}
           </div>
         )}
         {isSingleColumn && (
           <div className={styles.grid}>
             {postsHeader}
-            {featuredPost}
             {postList}
           </div>
         )}

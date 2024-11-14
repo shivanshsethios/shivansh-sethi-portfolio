@@ -96,7 +96,7 @@ function renderKatakana(device, visible) {
       data-visible={true}
       data-light={false}
       style={cssProps({ opacity: 1 })}
-      className={styles.svg}
+      className={styles.svg2}
       data-device={device}
       viewBox="0 0 751 136"
     >
