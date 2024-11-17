@@ -40,6 +40,7 @@ export const meta = () => {
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
+  const [focued, setFocused] = useState(false);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();

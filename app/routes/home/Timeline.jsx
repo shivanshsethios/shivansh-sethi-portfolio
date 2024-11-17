@@ -128,7 +128,7 @@ const Timeline = () => {
 
   return (
     <div className="timeline-container">
-      <header ref={headerRef} className="timeline-header" arria-hidden>
+      <header ref={headerRef} className="timeline-header" arria-hidden="true">
   
         {renderKatakana('laptop', true)}
       </header>
