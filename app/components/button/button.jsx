@@ -7,7 +7,6 @@ import { classes } from '~/utils/style';
 import styles from './button.module.css';
 
 function isExternalLink(href) {
-  console.log(href, href?.includes('://'))
   return href?.includes('://');
 }
 

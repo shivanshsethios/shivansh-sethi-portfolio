@@ -1,5 +1,3 @@
-import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
-import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
 import { Footer } from '~/components/footer';
 import { Section } from '~/components/section';
@@ -86,10 +84,6 @@ export const Home = () => {
     };
   }, [visibleSections]);
 
-  const onCallback = () => {
-    console.log('Timeline element crossed the middle of the screen!');
-  };
-
 
   return (
     <div className={styles.home}>
@@ -112,8 +106,8 @@ export const Home = () => {
           alt: 'Smart Sparrow lesson builder',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
-              placeholder: sprTexturePlaceholder,
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexture,
             },
           ],
         }}
