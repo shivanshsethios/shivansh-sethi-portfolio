@@ -7,6 +7,7 @@ import { classes } from '~/utils/style';
 import styles from './button.module.css';
 
 function isExternalLink(href) {
+  console.log(href, href?.includes('://'))
   return href?.includes('://');
 }
 
@@ -61,7 +62,7 @@ const ButtonContent = forwardRef(
         data-icon={icon}
         href={href}
         rel={rel || isExternal ? 'noopener noreferrer' : undefined}
-        target={target || isExternal ? '_blank' : undefined}
+        target="_blank"
         disabled={disabled}
         ref={ref}
         {...rest}

@@ -21,10 +21,10 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="Hi there" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-  I’m Shivansh, currently based in Chandigarh, and I’m the founder of <Link href="https://aiotize.com">Aiotize</Link>, a company dedicated to revolutionizing drone logistics through IoT solutions. My work involves strategic planning, business development, and overseeing innovative drone service projects. I thrive on creating intelligent solutions that empower businesses and redefine industry standards. If you're interested in the tools and technologies I use, check out my <Link href="/uses">uses page</Link>.
+  I’m Shivansh, currently based in Chandigarh, and I’m the founder of <Link href="https://aiotize.com">Aiotize</Link>, a company dedicated to revolutionizing drone logistics through IoT solutions. My work involves strategic planning, business development, and overseeing innovative drone service projects. I thrive on creating intelligent solutions that empower businesses and redefine industry standards.
 </Text>
 <Text className={styles.description} data-visible={visible} size="l" as="p">
-  Outside of work, I’m passionate about drone technology, IoT, and staying ahead of industry trends. In my free time, I enjoy experimenting with new drone applications, exploring advancements in AI, and connecting with others in the tech community. If you're working on something exciting or need consulting in drone logistics, feel free to reach out—I’m always open to new opportunities.
+  I’m passionate about drone technology, IoT, and staying ahead of industry trends. In my free time, I enjoy experimenting with new drone applications, exploring advancements in AI, and connecting with others in the tech community. If you're working on something exciting or need consulting in drone logistics, feel free to reach out—I’m always open to new opportunities.
 </Text>
   </Fragment>
 );

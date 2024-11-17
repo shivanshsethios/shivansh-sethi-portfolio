@@ -18,7 +18,14 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
   const [hovered, setHovered] = useState(false);
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
-  const { title, abstract, date, featured, banner } = frontmatter;
+  const { title, abstract, date, featured, link = null } = frontmatter;
+  
+  console.log({
+    title: title, 
+    desc: abstract,
+    featured: featured,
+    link: link
+  })
 
   useEffect(() => {
     setDateTime(formatDate(date));
@@ -55,10 +62,29 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
           />
         </div>
       )}
-      <RouterLink
+      {
+      !link ? (
+        <div className={styles.postLink}>
+
+        <div className={styles.postDetails}>
+        <div aria-hidden className={styles.postDate}>
+          <Divider notchWidth="64px" notchHeight="8px" />
+          {dateTime}
+        </div>
+        <Heading as="h2" level={featured ? 2 : 4}>
+          {title}
+        </Heading>
+        <Text size={featured ? 'l' : 's'} as="p">
+          {abstract}
+        </Text>
+        </div>
+      </div>
+      ) : (
+        <RouterLink
         unstable_viewTransition
         prefetch="intent"
-        to={`/articles/${slug}`}
+        target="_blank"
+        to={link}
         className={styles.postLink}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -75,12 +101,14 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
             {abstract}
           </Text>
           <div className={styles.postFooter}>
-            <Button secondary iconHoverShift icon="chevron-right" as="div">
-              Read article
-            </Button>
-          </div>
+          <Button secondary iconHoverShift icon="chevron-right" as="div">
+            Read article
+          </Button>
+        </div>
         </div>
       </RouterLink>
+      )
+      }
     </article>
   );
 }

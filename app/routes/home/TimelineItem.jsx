@@ -12,7 +12,7 @@ const TimelineItem = ({ date, title, description, company, location, imgSrc }) =
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 1 }
     );
 
     if (itemRef.current) {

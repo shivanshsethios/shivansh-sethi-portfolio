@@ -1,32 +1,19 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import TimelineItem from './TimelineItem.jsx';
 import './Timeline.css';
 import { cssProps } from '~/utils/style';
 import katakana from './katakana.svg';
 import styles from './project-summary.module.css';
-
-// const timelineData = [
-//   {
-//     date: "1881",
-//     title: "1881",
-//     description: "He was born in 1881 (probably in the spring) in Salonica, then an Ottoman city, now in Greece. His father Ali Riza, a customs official turned lumber merchant, died when Mustafa was still a boy. His mother Zubeyde, a devout and strong-willed woman, raised him and his sister.",
-//     imgSrc: "http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg",
-//   },
-//   {
-//     date: "1893",
-//     title: "1893",
-//     description: "First enrolled in a traditional religious school, he soon switched to a modern school. In 1893, he entered a military high school where his mathematics teacher gave him the second name Kemal (meaning perfection) in recognition of young Mustafa's superior achievement.",
-//     imgSrc: "http://gazetemanifesto.com/wp-content/uploads/2015/11/mustafa-kemal.jpg",
-//   },
-//   // Add more timeline events here following the same structure
-// ];
-
+import { Divider } from '~/components/divider/divider.jsx';
+import { DecoderText } from '~/components/decoder-text/decoder-text.jsx';
+import useMediaQuery from '~/utils/screensize.js';
 
 const timelineData = [
   {
     title: "Founder at Aiotize",
     description: "Leading Aiotize as Founder, my journey is fueled by a passion for leveraging the Internet of Things to revolutionize drone logistics. At Aiotize, we're not just developing technology; we're crafting smarter ecosystems for delivery services.",
     date: "August 2018 - Present",
+    dateSmall: "Aug '18 - Present",
     company: "Aiotize",
     location: "Chandigarh, Chandigarh, India",
     imgSrc: "",
@@ -35,6 +22,7 @@ const timelineData = [
     title: "Product Specialist for Drone Logistics Solution at JungleWorks",
     description: "Worked on drone logistics solutions, handling various aspects of product management and integration.",
     date: "August 2018 - February 2019",
+    dateSmall: "Aug '18 - Feb '19",
     company: "JungleWorks",
     location: "Chandigarh, India",
     imgSrc: "",
@@ -43,6 +31,7 @@ const timelineData = [
     title: "Application Engineer at HCL Technologies",
     description: "Worked as an Incident Manager with Hosting Integration Team, overseeing the application lifecycle development.",
     date: "May 2017 - July 2018",
+    dateSmall: "May '17 - Jul '18",
     company: "HCL Technologies",
     location: "Sector 126 SEZ NOIDA, India",
     imgSrc: "",
@@ -51,6 +40,7 @@ const timelineData = [
     title: "Software Developer Intern at Capgemini",
     description: "Interned at Capgemini, working with Java, HTML, CSS, and SQL/PL-SQL.",
     date: "December 2016 - April 2017",
+    dateSmall: "Dec '16 - Apr '17",
     company: "Capgemini",
     location: "Pune, Maharashtra, India",
     imgSrc: "",
@@ -59,6 +49,7 @@ const timelineData = [
     title: "Event Manager at Picadily Hotels",
     description: "Organized events, concerts, and festive events under the proprietorship of The 5th Chapter.",
     date: "December 2010 - March 2015",
+    dateSmall: "Dec '10 - Mar '15",
     company: "Picadily Hotels",
     location: "Chandigarh Area, India",
     imgSrc: "",
@@ -67,6 +58,7 @@ const timelineData = [
     title: "Bachelor's in Electronics and Communications Engineering",
     description: "Completed Bachelor's in Electronics and Communications Engineering at Chitkara University.",
     date: "2012 - 2016",
+    dateSmall: "'12 - '16",
     company: "Chitkara University",
     location: "India",
     imgSrc: "",
@@ -75,6 +67,7 @@ const timelineData = [
     title: "Higher Secondary (Non-Medical) at St. Peter's School Chandigarh",
     description: "Completed Higher Secondary Education with a focus on Non-Medical subjects.",
     date: "2010 - 2012",
+    dateSmall: "'10 - '12",
     company: "St. Peter's School Chandigarh",
     location: "Chandigarh, India",
     imgSrc: "",
@@ -83,6 +76,7 @@ const timelineData = [
     title: "High School (Science) at St. Stephen's School Chandigarh",
     description: "Completed High School Education with a focus on Science subjects.",
     date: "1998 - 2010",
+    dateSmall: "'98 - '10",
     company: "St. Stephen's School Chandigarh",
     location: "Chandigarh, India",
     imgSrc: "",
@@ -106,16 +100,43 @@ function renderKatakana(device, visible) {
 }
 
 const Timeline = () => {
+  const isSmallScreen = useMediaQuery("(max-width: 767px)");
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.classList.contains("timeline-header--active")) {
+            entry.target.classList.add("timeline-header--active");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="timeline-container">
-      <header className="timeline-header">
-      {renderKatakana('laptop', true)}
+      <header ref={headerRef} className="timeline-header" arria-hidden>
+  
+        {renderKatakana('laptop', true)}
       </header>
       <div className="timeline">
         {timelineData.map((item, index) => (
           <TimelineItem 
             key={index} 
-            date={item.date} 
+            date={isSmallScreen ? item.dateSmall : item.date} 
             title={item.title} 
             description={item.description} 
             company={item.company} 

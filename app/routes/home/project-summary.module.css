@@ -221,19 +221,20 @@
 
   &[data-device='laptop'] {
     position: absolute;
-    width: 70%;
+    width: 80%;
     right: -10%;
     bottom: 24%;
     transform: translateY(50%);
 
     @media (--mediaTablet) {
-      width: 80%;
-      right: -10%;
-      bottom: 18%;
+      width: 120%;
+      right: -32%;
+      bottom: 60%;
     }
-
+    
     @media (--mediaMobile) {
-      right: 0;
+      right: -71px;
+      width: 100%;
     }
   }
 
@@ -254,6 +255,8 @@
   opacity: 0;
   transition: opacity 1200ms ease 1400ms;
   fill: var(--textTitle);
+  position: relative;
+  width: 10%;
 
   &[data-visible='true'] {
     opacity: var(--opacity);
@@ -295,33 +298,12 @@
   }
 
   &[data-device='laptop'] {
-    position: absolute;
-    width: 70%;
-    right: -10%;
-    bottom: 15%;
-    transform: translateY(105%);
-
     @media (--mediaTablet) {
-      width: 80%;
-      right: -10%;
-      bottom: 18%;
+      width: 15%;
     }
 
     @media (--mediaMobile) {
-      right: 0;
-    }
-  }
-
-  &[data-device='phone'] {
-    position: absolute;
-    bottom: 23%;
-    transform: translateY(50%);
-    width: 100%;
-    transition-delay: 800ms;
-
-    @media (--mediaTablet) {
-      width: 80%;
-      bottom: 23%;
+      width: 18%;
     }
   }
 }
