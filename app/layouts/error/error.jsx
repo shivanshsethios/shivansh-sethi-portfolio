@@ -1,14 +1,9 @@
-import notFoundPoster from '~/assets/notfound.jpg';
-import notFoundVideo from '~/assets/notfound.mp4';
-import flatlinePoster from '~/assets/flatline.png';
-import flatlineVideo from '~/assets/flatline.mp4';
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import styles from './error.module.css';
-import { Image } from '~/components/image';
 import flatlineSkull from './error-flatline.svg';
 
 export function Error({ error }) {
