@@ -12,6 +12,38 @@
   }
 }
 
+.article_container {
+  display: flex;
+}
+
+.article_container_image {
+  width: 15%;
+  display: flex;
+  aspect-ratio: 1/1;
+  justify-content: center;
+}
+
+.article_inner_container_image {
+  width: 100%;
+  position: relative;
+}
+
+.article_container_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 85%;
+  margin: 0 0 0 20px;
+}
+
+.article_image {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .grid {
   --verticalPadding: var(--space4XL);
 
@@ -96,7 +128,13 @@
 
 .post {
   --featuredPostPadding: var(--space5XL);
-  --featuredPostClip: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%);
+  --featuredPostClip: polygon(
+    0 0,
+    calc(100% - 32px) 0,
+    100% 32px,
+    100% 100%,
+    0 100%
+  );
   --postBorder: 1px solid color-mix(in lab, var(--text) 10%, transparent);
 
   position: relative;
@@ -123,7 +161,7 @@
     --featuredPostPadding: var(--spaceOuter);
   }
 
-  &[data-featured='true'] {
+  &[data-featured="true"] {
     margin: 0;
     border: 0;
     position: sticky;
@@ -138,7 +176,7 @@
     }
   }
 
-  &[data-featured='false']:global {
+  &[data-featured="false"]:global {
     opacity: 0;
     animation: fade-in var(--durationL) ease var(--delay) forwards;
   }
@@ -231,9 +269,9 @@
     --linkPadding: var(--space2XL);
   }
 
-  [data-featured='false'] & {
+  [data-featured="false"] & {
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: var(--spaceXL) calc(var(--spaceXL) * -1);
       transform: scale3d(0, 1, 1);
@@ -250,7 +288,7 @@
     }
   }
 
-  [data-featured='true'] & {
+  [data-featured="true"] & {
     padding: var(--featuredPostPadding);
     clip-path: var(--featuredPostClip);
 
@@ -259,7 +297,7 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background-color: var(--accent);
@@ -301,7 +339,7 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
 
@@ -343,7 +381,7 @@
   gap: var(--spaceL);
   width: 100%;
 
-  [data-featured='true'] & {
+  [data-featured="true"] & {
     opacity: 0;
 
     &:global {
@@ -372,7 +410,7 @@
   gap: var(--spaceM);
 
   &::before {
-    content: '';
+    content: "";
     width: 42px;
     height: 2px;
     background-color: color-mix(in lab, var(--text) 20%, transparent);

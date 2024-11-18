@@ -119,40 +119,40 @@ export const Home = () => {
         id="aboutme"
       />
       <Section
-      className={styles.profile}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-      as="section"
-      id="timeline"
-      ref={timeline}
-      // aria-labelledby={titleId}
-      tabIndex={-1}
-    >
-      <Timeline />
+        className={styles.profile}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        as="section"
+        id="timeline"
+        ref={timeline}
+        // aria-labelledby={titleId}
+        tabIndex={-1}
+      >
+        <Timeline />
       </Section>
       <Section
-      className={styles.profile}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-      as="section"
-      id="testimonials"
-      ref={testimonials}
-      // aria-labelledby={titleId}
-      tabIndex={-1}
-    >
-      <TestimonialSlider />
+        className={styles.profile}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        as="section"
+        id="testimonials"
+        ref={testimonials}
+        // aria-labelledby={titleId}
+        tabIndex={-1}
+      >
+        <TestimonialSlider />
       </Section>
       <Section
-      className={styles.profile}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-      as="section"
-      id="footer"
-      ref={footer}
-      // aria-labelledby={titleId}
-      tabIndex={-1}
-    >
-      <Footer />
+        className={styles.profile}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        as="section"
+        id="footer"
+        ref={footer}
+        // aria-labelledby={titleId}
+        tabIndex={-1}
+      >
+        <Footer />
       </Section>
     </div>
   );

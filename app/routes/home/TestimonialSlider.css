@@ -9,9 +9,18 @@
     padding: 20px;
     position: relative;
   }
+
+  .testimonial-image{
+    width: 50px;
+    margin-top: 10px;
+    border-radius: 100%;
+  }
   
   .testimonial-container {
     min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     &[data-device='laptop'] {
   

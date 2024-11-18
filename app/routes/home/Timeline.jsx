@@ -10,76 +10,67 @@ import useMediaQuery from '~/utils/screensize.js';
 
 const timelineData = [
   {
-    title: "Founder at Aiotize",
+    title: "Founder",
     description: "Leading Aiotize as Founder, my journey is fueled by a passion for leveraging the Internet of Things to revolutionize drone logistics. At Aiotize, we're not just developing technology; we're crafting smarter ecosystems for delivery services.",
     date: "August 2018 - Present",
     dateSmall: "Aug '18 - Present",
     company: "Aiotize",
     location: "Chandigarh, Chandigarh, India",
-    imgSrc: "",
+    imgSrc: "./Aiotize_logo.png",
   },
   {
-    title: "Product Specialist for Drone Logistics Solution at JungleWorks",
+    title: "Product Specialist",
     description: "Worked on drone logistics solutions, handling various aspects of product management and integration.",
     date: "August 2018 - February 2019",
     dateSmall: "Aug '18 - Feb '19",
     company: "JungleWorks",
     location: "Chandigarh, India",
-    imgSrc: "",
+    imgSrc: "./JungleWorks_logo.png",
   },
   {
-    title: "Application Engineer at HCL Technologies",
+    title: "Application Engineer",
     description: "Worked as an Incident Manager with Hosting Integration Team, overseeing the application lifecycle development.",
     date: "May 2017 - July 2018",
     dateSmall: "May '17 - Jul '18",
     company: "HCL Technologies",
     location: "Sector 126 SEZ NOIDA, India",
-    imgSrc: "",
+    imgSrc: "./HCLTech_logo.png",
   },
   {
-    title: "Software Developer Intern at Capgemini",
+    title: "Software Developer Intern",
     description: "Interned at Capgemini, working with Java, HTML, CSS, and SQL/PL-SQL.",
     date: "December 2016 - April 2017",
     dateSmall: "Dec '16 - Apr '17",
     company: "Capgemini",
     location: "Pune, Maharashtra, India",
-    imgSrc: "",
+    imgSrc: "./Capegemini.png",
   },
   {
-    title: "Event Manager at Picadily Hotels",
+    title: "Event Manager",
     description: "Organized events, concerts, and festive events under the proprietorship of The 5th Chapter.",
     date: "December 2010 - March 2015",
     dateSmall: "Dec '10 - Mar '15",
     company: "Picadily Hotels",
     location: "Chandigarh Area, India",
-    imgSrc: "",
+    imgSrc: "./PicadilyHotels_logo.png",
   },
   {
-    title: "Bachelor's in Electronics and Communications Engineering",
+    title: "Bachelor's in ECE",
     description: "Completed Bachelor's in Electronics and Communications Engineering at Chitkara University.",
     date: "2012 - 2016",
     dateSmall: "'12 - '16",
     company: "Chitkara University",
     location: "India",
-    imgSrc: "",
+    imgSrc: "./Chitkara_logo.png",
   },
   {
-    title: "Higher Secondary (Non-Medical) at St. Peter's School Chandigarh",
+    title: "Higher Secondary",
     description: "Completed Higher Secondary Education with a focus on Non-Medical subjects.",
     date: "2010 - 2012",
     dateSmall: "'10 - '12",
-    company: "St. Peter's School Chandigarh",
+    company: "St. Peter's School",
     location: "Chandigarh, India",
-    imgSrc: "",
-  },
-  {
-    title: "High School (Science) at St. Stephen's School Chandigarh",
-    description: "Completed High School Education with a focus on Science subjects.",
-    date: "1998 - 2010",
-    dateSmall: "'98 - '10",
-    company: "St. Stephen's School Chandigarh",
-    location: "Chandigarh, India",
-    imgSrc: "",
+    imgSrc: "./School_logo.png",
   }
 ];
 
@@ -129,14 +120,14 @@ const Timeline = () => {
   return (
     <div className="timeline-container">
       <header ref={headerRef} className="timeline-header" arria-hidden="true">
-  
         {renderKatakana('laptop', true)}
       </header>
       <div className="timeline">
         {timelineData.map((item, index) => (
           <TimelineItem 
-            key={index} 
+            key={index}
             date={isSmallScreen ? item.dateSmall : item.date} 
+            index={index}
             title={item.title} 
             description={item.description} 
             company={item.company} 

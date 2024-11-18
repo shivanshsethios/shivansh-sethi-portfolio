@@ -69,7 +69,6 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 <div className={styles.tagText} data-visible={visible}>
                 <DecoderText text="About me" start={visible} delay={500} />
                 </div>
-
               </div>
               <div className={styles.image}>
                 <Image
@@ -80,7 +79,6 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
                 />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />

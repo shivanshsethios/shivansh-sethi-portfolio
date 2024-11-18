@@ -18,8 +18,9 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
   const [hovered, setHovered] = useState(false);
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
-  const { title, abstract, date, featured, link = null } = frontmatter;
-  
+  const { title, abstract, date, featured, link = null, img = null } = frontmatter;
+  console
+
   useEffect(() => {
     setDateTime(formatDate(date));
   }, [date, dateTime]);
@@ -56,51 +57,69 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
         </div>
       )}
       {
-      !link ? (
-        <div className={styles.postLink}>
+        !link ? (
+          <div className={styles.postLink}>
 
-        <div className={styles.postDetails}>
-        <div aria-hidden className={styles.postDate}>
-          <Divider notchWidth="64px" notchHeight="8px" />
-          {dateTime}
-        </div>
-        <Heading as="h2" level={featured ? 2 : 4}>
-          {title}
-        </Heading>
-        <Text size={featured ? 'l' : 's'} as="p">
-          {abstract}
-        </Text>
-        </div>
-      </div>
-      ) : (
-        <RouterLink
-        unstable_viewTransition
-        prefetch="intent"
-        target="_blank"
-        to={link}
-        className={styles.postLink}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className={styles.postDetails}>
-          <div aria-hidden className={styles.postDate}>
-            <Divider notchWidth="64px" notchHeight="8px" />
-            {dateTime}
+            <div className={styles.postDetails}>
+              <div aria-hidden className={styles.postDate}>
+                <Divider notchWidth="64px" notchHeight="8px" />
+                {dateTime}
+              </div>
+              <div className={styles.article_container}>
+                <div className={styles.article_container_image}>
+                  <div className={styles.article_inner_container_image}>
+                    <img src={img} className={styles.article_image} />
+                  </div>
+                </div>
+                <div className={styles.article_container_content}>
+                  <Heading as="h2" level={featured ? 2 : 4}>
+                    {title}
+                  </Heading>
+                  <Text size={featured ? 'l' : 's'} as="p">
+                    {abstract}
+                  </Text>
+                </div>
+              </div>
+            </div>
           </div>
-          <Heading as="h2" level={featured ? 2 : 4}>
-            {title}
-          </Heading>
-          <Text size={featured ? 'l' : 's'} as="p">
-            {abstract}
-          </Text>
-          <div className={styles.postFooter}>
-          <Button secondary iconHoverShift icon="chevron-right" as="div">
-            Read article
-          </Button>
-        </div>
-        </div>
-      </RouterLink>
-      )
+        ) : (
+          <RouterLink
+            unstable_viewTransition
+            prefetch="intent"
+            target="_blank"
+            to={link}
+            className={styles.postLink}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className={styles.postDetails}>
+              <div aria-hidden className={styles.postDate}>
+                <Divider notchWidth="64px" notchHeight="8px" />
+                {dateTime}
+              </div>
+              <div className={styles.article_container}>
+                <div className={styles.article_container_image}>
+                  <div className={styles.article_inner_container_image}>
+                    <img src={img} className={styles.article_image} />
+                  </div>
+                </div>
+                <div className={styles.article_container_content}>
+                  <Heading as="h2" level={featured ? 2 : 4}>
+                    {title}
+                  </Heading>
+                  <Text size={featured ? 'l' : 's'} as="p">
+                    {abstract}
+                  </Text>
+                </div>
+              </div>
+              <div className={styles.postFooter}>
+                <Button secondary iconHoverShift icon="chevron-right" as="div">
+                  Read article
+                </Button>
+              </div>
+            </div>
+          </RouterLink>
+        )
       }
     </article>
   );

@@ -71,6 +71,7 @@
 .description {
   margin-bottom: var(--spaceXL);
   opacity: 0;
+  text-align: justify;
   transition: opacity var(--durationXL) ease var(--durationL);
 
   &[data-visible='true'] {
