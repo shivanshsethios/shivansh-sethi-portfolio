@@ -1,9 +1,25 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Image } from '~/components/image';
 // import profileImg from '~/assets/Aiotize_logo.png';
 
 const TimelineItem = ({ date, index, title, description, company, location, imgSrc }) => {
   const itemRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile view based on window width
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the width breakpoint as needed
+    };
+
+    // Initial check and event listener
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup listener
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -30,7 +46,7 @@ const TimelineItem = ({ date, index, title, description, company, location, imgS
   return (
     <div className="timeline-item" data-text={date} ref={itemRef}>
       {
-        index % 2 != 0 ? (
+        isMobile || index % 2 != 0 ? (
           <div className="timeline__content">
             <div className='timeline__content-content'>
               <div className="timeline__content-image">

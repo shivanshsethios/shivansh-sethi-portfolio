@@ -108,12 +108,12 @@ const tokensMobileSmall = {
 
 // Tokens that change based on theme
 const dark = {
-  background: '#001021',
-  backgroundLight: '#002247',
-  primary: '#088395',
-  accent: '#37B7C3',
+  background: 'oklch(17.76% 0 0)',
+  backgroundLight: 'oklch(21.78% 0 0)',
+  primary: 'oklch(84.42% 0.19 202.24)',
+  accent: 'oklch(84.42% 0.19 202.24)',
   error: 'oklch(65.91% 0.249 13.76)',
-  text: '#EBF4F6',
+  text: 'var(--white)',
   textTitle: 'var(--text)',
   textBody: 'color-mix(in lab, var(--text) 80%, transparent)',
   textLight: 'color-mix(in lab, var(--text) 60%, transparent)',

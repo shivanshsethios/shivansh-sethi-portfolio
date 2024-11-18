@@ -4,7 +4,9 @@ import { Heading } from '~/components/heading';
 import { deviceModels } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
+import { Image } from '~/components/image';
 import { useTheme } from '~/components/theme-provider';
+import imgSrc from "~/assets/Aiotize_logo_large.jpeg"
 import { Transition } from '~/components/transition';
 import { Loader } from '~/components/loader';
 import { useWindowSize } from '~/hooks';
@@ -33,7 +35,7 @@ export function ProjectSummary({
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
-  const [modelLoaded, setModelLoaded] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(true);
   const { theme } = useTheme();
   const { width } = useWindowSize();
   const isHydrated = useHydrated();
@@ -55,7 +57,7 @@ export function ProjectSummary({
         data-visible={visible && modelLoaded}
         data-light={theme === 'light'}
         style={cssProps({ opacity: svgOpacity })}
-        className={styles.svg}
+        className={styles.svg_aiotize}
         data-device={device}
         viewBox="0 0 751 136"
       >
@@ -104,8 +106,19 @@ export function ProjectSummary({
       <div className={styles.preview}>
         {model.type === 'laptop' && (
           <>
-            {renderKatakana('laptop', visible)}
-            <div className={styles.model} data-device="laptop">
+            <div className={styles.hero__content_image}>
+                <Image
+                  reveal
+                  delay={100}
+                  placeholder={imgSrc}
+                  srcSet={`${imgSrc} 100w, ${imgSrc}  20w`}
+                  width={360}
+                  height={1080}
+                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
+                  />
+              </div>
+                  {renderKatakana('laptop', visible)}
+            {/* <div className={styles.model} data-device="laptop">
               {!modelLoaded && (
                 <Loader center className={styles.loader} data-visible={visible} />
               )}
@@ -129,7 +142,7 @@ export function ProjectSummary({
                   />
                 </Suspense>
               )}
-            </div>
+            </div> */}
           </>
         )}
         {model.type === 'phone' && (
