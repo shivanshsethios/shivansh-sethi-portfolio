@@ -16,10 +16,11 @@ import styles from './articles.module.css';
 
 function ArticlesPost({ slug, frontmatter, timecode, index }) {
   const [hovered, setHovered] = useState(false);
+  const banner = './Aiotize_logo.png'
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
-  const { title, abstract, date, featured, link = null, img = null } = frontmatter;
-  console
+  const { title, abstract, date, featured, link, type, img } = frontmatter;
+  // console.log(log);
 
   useEffect(() => {
     setDateTime(formatDate(date));
@@ -57,37 +58,12 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
         </div>
       )}
       {
-        !link ? (
-          <div className={styles.postLink}>
-
-            <div className={styles.postDetails}>
-              <div aria-hidden className={styles.postDate}>
-                <Divider notchWidth="64px" notchHeight="8px" />
-                {dateTime}
-              </div>
-              <div className={styles.article_container}>
-                <div className={styles.article_container_image}>
-                  <div className={styles.article_inner_container_image}>
-                    <img src={img} className={styles.article_image} />
-                  </div>
-                </div>
-                <div className={styles.article_container_content}>
-                  <Heading as="h2" level={featured ? 2 : 4}>
-                    {title}
-                  </Heading>
-                  <Text size={featured ? 'l' : 's'} as="p">
-                    {abstract}
-                  </Text>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
+        link ? (
           <RouterLink
             unstable_viewTransition
             prefetch="intent"
-            target="_blank"
             to={link}
+            target='_blank'
             className={styles.postLink}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -95,23 +71,35 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
             <div className={styles.postDetails}>
               <div aria-hidden className={styles.postDate}>
                 <Divider notchWidth="64px" notchHeight="8px" />
-                {dateTime}
+                {`${dateTime} | ${type}`}
               </div>
-              <div className={styles.article_container}>
-                <div className={styles.article_container_image}>
-                  <div className={styles.article_inner_container_image}>
-                    <img src={img} className={styles.article_image} />
+              {!featured && <>
+                <div className={styles.article_container}>
+                  <div className={styles.article_container_image}>
+                    <div className={styles.article_inner_container_image}>
+                      <img src={img} className={styles.article_image} />
+                    </div>
+                  </div>
+                  <div className={styles.article_container_content}>
+                    <Heading as="h2" level={featured ? 2 : 4}>
+                      {title}
+                    </Heading>
+                    <Text size={featured ? 'l' : 's'} as="p">
+                      {abstract}
+                    </Text>
                   </div>
                 </div>
-                <div className={styles.article_container_content}>
+              </>
+              }
+              {
+                featured && <>
                   <Heading as="h2" level={featured ? 2 : 4}>
                     {title}
                   </Heading>
                   <Text size={featured ? 'l' : 's'} as="p">
                     {abstract}
                   </Text>
-                </div>
-              </div>
+                </>}
               <div className={styles.postFooter}>
                 <Button secondary iconHoverShift icon="chevron-right" as="div">
                   Read article
@@ -119,6 +107,39 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
               </div>
             </div>
           </RouterLink>
+        ) : (
+          <div
+            unstable_viewTransition
+            prefetch="intent"
+            className={styles.postLink}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className={styles.postDetails}>
+              <div aria-hidden className={styles.postDate}>
+                <Divider notchWidth="64px" notchHeight="8px" />
+                {`${dateTime} | ${type}`}
+              </div>
+              {!featured && <>
+                <div className={styles.article_container}>
+                  <div className={styles.article_container_image}>
+                    <div className={styles.article_inner_container_image}>
+                      <img src={img} className={styles.article_image} />
+                    </div>
+                  </div>
+                  <div className={styles.article_container_content}>
+                    <Heading as="h2" level={featured ? 2 : 4}>
+                      {title}
+                    </Heading>
+                    <Text size={featured ? 'l' : 's'} as="p">
+                      {abstract}
+                    </Text>
+                  </div>
+                </div>
+              </>
+              }
+            </div>
+          </div>
         )
       }
     </article>
@@ -155,6 +176,9 @@ function SkeletonPost({ index }) {
             <Button secondary iconHoverShift icon="chevron-right" as="div">
               Read more
             </Button>
+            <Text className={styles.timecode} size="s">
+              00:00:00:00
+            </Text>
           </div>
         </div>
       </div>
@@ -191,17 +215,21 @@ export function Articles() {
     </div>
   );
 
+  const featuredPost = <ArticlesPost {...featured} />;
+
   return (
     <article className={styles.articles}>
       <Section className={styles.content}>
         {!isSingleColumn && (
           <div className={styles.grid}>
             {postList}
+            {featuredPost}
           </div>
         )}
         {isSingleColumn && (
           <div className={styles.grid}>
             {postsHeader}
+            {featuredPost}
             {postList}
           </div>
         )}

@@ -171,8 +171,8 @@
 }
 
 .svg_aiotize {
-  margin: 15px 0 0 300px;
-  width: 100%;
+  margin: 15px 0 0 160px;
+  width: 130%;
   z-index: var(--zIndex3);
   opacity: 0;
   transition: opacity var(--durationM) ease var(--durationL);
@@ -187,17 +187,18 @@
     
   }
   
-  @media (--mediaMobile), (--mediaMobileLS) {
-    width: 90px;
-    transform: translate3d(25%, -20%, 0);
-  }
-
   @media (max-width: 820px) and (max-height: 420px) {
     width: 50px;
   }
-
+  
   @media (--mediaTablet) {
-  width: 100px;
+    width: 100%;
+    margin: 10px 0 0 50px;
+  }
+  
+  @media (--mediaMobile), (--mediaMobileLS) {
+    width: 100%;
+    transform: 20px 115px 0 0;
   }
 }
 
@@ -212,20 +213,20 @@
 
   &[data-device='laptop'] {
     position: absolute;
-    width: 80%;
-    right: -10%;
-    bottom: 24%;
+    width: 70%;
+    right: 0;
+    bottom: 30%;
     transform: translateY(50%);
 
     @media (--mediaTablet) {
       width: 120%;
-      right: -32%;
-      bottom: 60%;
+      right: -85px;
+      bottom: 50%;
     }
     
     @media (--mediaMobile) {
-      right: -71px;
-      width: 100%;
+      right: -30px;
+      width: 110%;
     }
   }
 

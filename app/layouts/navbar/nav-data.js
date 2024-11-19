@@ -26,8 +26,13 @@ export const socialLinks = [
     icon: 'linkedin',
   },
   {
+    label: 'Facebook',
+    url: `https://www.facebook.com/${config.facebook}`,
+    icon: 'facebook',
+  },
+  {
     label: 'X',
-    url: `https://x.com/shivanshsethi13`,
+    url: `https://x.com/${config.x}`,
     icon: 'x',
   },
   {

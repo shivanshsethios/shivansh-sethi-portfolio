@@ -6,6 +6,7 @@ import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Image } from '~/components/image';
 import { useTheme } from '~/components/theme-provider';
+// import imgSrc from "~/assets/Aiotize_logo_large.png"
 import imgSrc from "~/assets/Aiotize_logo_large.jpeg"
 import { Transition } from '~/components/transition';
 import { Loader } from '~/components/loader';

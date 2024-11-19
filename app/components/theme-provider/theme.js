@@ -117,10 +117,11 @@ const dark = {
   textTitle: 'var(--text)',
   textBody: 'color-mix(in lab, var(--text) 80%, transparent)',
   textLight: 'color-mix(in lab, var(--text) 60%, transparent)',
+  timeline: 'rgba(255, 255, 255, 0.07)'
 };
 
 const light = {
-  background: 'oklch(96.12% 0 0)',
+  background: '#FFFFFF',
   backgroundLight: 'var(--white)',
   primary: 'var(--black)',
   accent: 'oklch(84.42% 0.19 202.24)',
@@ -129,6 +130,7 @@ const light = {
   textTitle: 'color-mix(in lab, var(--text) 90%, transparent)',
   textBody: 'color-mix(in lab, var(--text) 75%, transparent)',
   textLight: 'color-mix(in lab, var(--text) 55%, transparent)',
+  timeline: 'rgb(0 0 0 / 30%)'
 };
 
 export const tokens = {
