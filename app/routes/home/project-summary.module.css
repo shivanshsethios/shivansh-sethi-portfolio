@@ -390,3 +390,15 @@
 .hero__content_image{
   width: 60%;
 }
+
+.video {
+  width: 120%;
+
+  @media (--mediaLaptop) {
+    width: 135%;
+  }
+
+  @media (--mediaTablet) {
+    width: 100%;
+  }
+}

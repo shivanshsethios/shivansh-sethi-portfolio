@@ -5,6 +5,7 @@ import { deviceModels } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Image } from '~/components/image';
+import video from `~/assets/spr-motion.mp4`
 import { useTheme } from '~/components/theme-provider';
 // import imgSrc from "~/assets/Aiotize_logo_large.png"
 import imgSrc from "~/assets/Aiotize_logo_large.jpeg"
@@ -26,6 +27,7 @@ export function ProjectSummary({
   id,
   visible: sectionVisible,
   sectionRef,
+  isVideo,
   index,
   title,
   description,
@@ -77,8 +79,8 @@ export function ProjectSummary({
             collapsed={!visible}
             collapseDelay={1000}
           />
-                <div className={styles.tagText} data-visible={visible}>
-          <DecoderText text="Aiotize" start={visible} delay={500} />
+          <div className={styles.tagText} data-visible={visible}>
+            <DecoderText text="Aiotize" start={visible} delay={500} />
           </div>
         </div>
         <Heading
@@ -108,6 +110,20 @@ export function ProjectSummary({
         {model.type === 'laptop' && (
           <>
             <div className={styles.hero__content_image}>
+              {
+                isVideo ? (
+                <Image
+                  raised
+                  reveal
+                  className={styles.video}
+                  srcSet={`${video} 1280w, ${video} 2560w`}
+                  width={1280}
+                  height={800}
+                  placeholder={video}
+                  alt=""
+                  sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+                />
+              ) : (
                 <Image
                   reveal
                   delay={100}
@@ -115,35 +131,12 @@ export function ProjectSummary({
                   srcSet={`${imgSrc} 100w, ${imgSrc}  20w`}
                   width={360}
                   height={1080}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
-                  />
-              </div>
-                  {renderKatakana('laptop', visible)}
-            {/* <div className={styles.model} data-device="laptop">
-              {!modelLoaded && (
-                <Loader center className={styles.loader} data-visible={visible} />
-              )}
-              {isHydrated && visible && (
-                <Suspense>
-                  <Model
-                    alt={model.alt}
-                    cameraPosition={{ x: 0, y: 0, z: 8 }}
-                    showDelay={700}
-                    onLoad={handleModelLoad}
-                    show={visible}
-                    models={[
-                      {
-                        ...deviceModels.laptop,
-                        texture: {
-                          ...model.textures[0],
-                          sizes: laptopSizes,
-                        },
-                      },
-                    ]}
-                  />
-                </Suspense>
-              )}
-            </div> */}
+                  alt=""
+                />
+              )
+            }
+            {renderKatakana('laptop', visible)}
+            </div>
           </>
         )}
         {model.type === 'phone' && (

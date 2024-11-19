@@ -44,13 +44,14 @@ export const Home = () => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
+  const projectTwo = useRef();
   const details = useRef();
   const timeline = useRef();
   const testimonials = useRef();
   const footer = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, details, timeline, testimonials, footer];
+    const sections = [intro, projectOne, details, projectTwo, timeline, testimonials, footer];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -117,6 +118,28 @@ export const Home = () => {
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
         id="aboutme"
+      />
+      <ProjectSummary
+        id="project-2"
+        alternate
+        sectionRef={projectTwo}
+        isVideo={true}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
+        title="FPV Racing Pilot"
+        description="Driven by passion, I immerse myself in the thrilling world of FPV (First-Person View) drone racing. The art of high-speed flight, precise maneuvers, and technical mastery fuels my dedication to this exhilarating sport."
+        buttonText="Know More"
+        buttonLink="https://gamestack.hamishw.com"
+        model={{
+          type: 'laptop',
+          alt: 'Smart Sparrow lesson builder',
+          textures: [
+            {
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexture,
+            },
+          ],
+        }}
       />
       <Section
         className={styles.profile}
