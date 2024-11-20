@@ -18,6 +18,7 @@ import { json } from '@remix-run/cloudflare';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import styles from './contact.module.css';
 import emailjs from '@emailjs/browser';
+import InlineComponent from './InlineComponent';
 
 export const meta = () => {
   return baseMeta({
@@ -71,6 +72,11 @@ export const Contact = () => {
             ref={form}
             onSubmit={sendEmail}
           >
+            {/* <Divider
+              className={styles.divider}
+              data-status={status}
+              style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
+            /> */}
             <Heading
               className={styles.title}
               data-status={status}
@@ -80,11 +86,6 @@ export const Contact = () => {
             >
               <DecoderText text="Say hello" start={status !== 'exited'} delay={300} />
             </Heading>
-            <Divider
-              className={styles.divider}
-              data-status={status}
-              style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
-            />
             <Input
               required
               className={styles.input}
@@ -157,6 +158,45 @@ export const Contact = () => {
               Back to homepage
             </Button>
           </div>
+        )}
+      </Transition>
+      <Transition unmount in={true} timeout={1600}>
+        {({ status, nodeRef }) => (
+          <>
+            <Form
+              className={styles.form2}
+            >
+              <Divider
+                className={styles.divider}
+                data-status={status}
+                style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
+              />
+              <Heading
+                className={styles.title}
+                data-status={status}
+                level={3}
+                as="h1"
+                style={getDelay(tokens.base.durationXS, initDelay, 0.3)}
+              >
+                <DecoderText text="Book a Meeting" start={status !== 'exited'} delay={300} />
+              </Heading>
+
+
+              <Button
+                className={styles.button2}
+                data-status={status}
+                data-sending={sending}
+                style={getDelay(tokens.base.durationM, initDelay)}
+                disabled={sending}
+                loading={sending}
+                loadingText="Sending..."
+                icon="send"
+                type="submit"
+              >
+                <InlineComponent />
+              </Button>
+            </Form>
+          </>
         )}
       </Transition>
       <Footer className={styles.footer} />
