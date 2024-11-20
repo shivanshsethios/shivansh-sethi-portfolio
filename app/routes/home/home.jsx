@@ -127,9 +127,9 @@ export const Home = () => {
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
         title="FPV Racing Pilot"
-        description="Driven by passion, I immerse myself in the thrilling world of FPV (First-Person View) drone racing. The art of high-speed flight, precise maneuvers, and technical mastery fuels my dedication to this exhilarating sport."
+        description="As an FPV drone racing enthusiast, I am deeply passionate about the dynamic world of drones, combining technology and adrenaline to push the boundaries of speed and precision. I proudly associate myself with the Drone Racing Federation (DRF), a pioneering initiative by Aiotize, aimed at uniting drone hobbyists, pilots, and professionals on a single platform to compete and excel."
         buttonText="Know More"
-        buttonLink="https://gamestack.hamishw.com"
+        buttonLink="https://www.facebook.com/droneracingfederation"
         model={{
           type: 'laptop',
           alt: 'Smart Sparrow lesson builder',

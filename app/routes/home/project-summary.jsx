@@ -60,11 +60,11 @@ export function ProjectSummary({
         data-visible={visible && modelLoaded}
         data-light={theme === 'light'}
         style={cssProps({ opacity: svgOpacity })}
-        className={styles.svg_aiotize}
+        className={id === "aiotize" ? styles.svg_aiotize : styles.svg_fpv}
         data-device={device}
         viewBox="0 0 751 136"
       >
-        <use href={`${katakana}#aiotize-project`} />
+        <use href={id === "aiotize" ? `${katakana}#aiotize-project` : `${katakana}#aiotize-fpv`} />
       </svg>
     );
   }
@@ -80,7 +80,7 @@ export function ProjectSummary({
             collapseDelay={1000}
           />
           <div className={styles.tagText} data-visible={visible}>
-            <DecoderText text="Aiotize" start={visible} delay={500} />
+            <DecoderText text={id === "aiotize" ? "Aiotize" : "Drone Racing Federation"} start={visible} delay={500} />
           </div>
         </div>
         <Heading
@@ -109,7 +109,7 @@ export function ProjectSummary({
       <div className={styles.preview}>
         {model.type === 'laptop' && (
           <>
-            <div className={styles.hero__content_image}>
+            <div className={id==="aiotize" ? styles.hero__content_image : styles.hero__content_image2}>
               {
                 isVideo ? (
                 <Image
@@ -184,7 +184,7 @@ export function ProjectSummary({
 
   return (
     <Section
-      className={styles.summary}
+      className={id==="aiotize" ? styles.summary : styles.summary2}
       data-alternate={alternate}
       data-first={index === 1}
       onFocus={() => setFocused(true)}
@@ -196,7 +196,7 @@ export function ProjectSummary({
       tabIndex={-1}
       {...rest}
     >
-      <div className={styles.content}>
+      <div className={id==="aiotize" ? styles.content : styles.content2}>
         <Transition in={sectionVisible || focused}>
           {({ visible }) => (
             <>
