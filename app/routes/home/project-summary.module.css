@@ -1,5 +1,5 @@
 .summary {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   max-height: 1080px;
   padding-bottom: var(--spaceL);
@@ -243,8 +243,8 @@
 }
 
 .svg_aiotize {
-  margin: 15px 0 0 160px;
-  width: 130%;
+  margin: 15px 0 0 0px;
+  width: 165%;
   z-index: var(--zIndex3);
   opacity: 0;
   transition: opacity var(--durationM) ease var(--durationL);
@@ -264,17 +264,17 @@
   }
   
   @media (--mediaTablet) {
-    width: 100%;
-    margin: 10px 0 0 50px;
+    width: 130%;
+    margin: 10px 0 0 35px;
   }
   
   @media (--mediaMobile), (--mediaMobileLS) {
-    width: 100%;
-    transform: 20px 115px 0 0;
+    width: 110%;
+    margin: 10px 0 0 0;
   }
 }
 .svg_fpv {
-  margin: 10px 0 0 65px;
+  margin: 15px 0 0 40px;
   width: 100%;
   z-index: var(--zIndex3);
   opacity: 0;
@@ -292,11 +292,11 @@
   
   @media (--mediaTablet) {
     width: 100%;
-    margin: 10px 0 0 50px;
+    margin: 15px 0 15px 50px;
   }
   @media (--mediaMobile) {
     margin: 15px 0 15px 150px;
-    width: 55%;
+    width: 65%;
     
   }
 }

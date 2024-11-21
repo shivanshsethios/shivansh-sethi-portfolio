@@ -80,7 +80,7 @@ export function ProjectSummary({
             collapseDelay={1000}
           />
           <div className={styles.tagText} data-visible={visible}>
-            <DecoderText text={id === "aiotize" ? "Aiotize" : "Drone Racing Federation"} start={visible} delay={500} />
+            <DecoderText text={id === "aiotize" ? "Aiotize" : "Drone Racing"} start={visible} delay={500} />
           </div>
         </div>
         <Heading
