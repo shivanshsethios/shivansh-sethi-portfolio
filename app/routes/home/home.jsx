@@ -129,7 +129,7 @@ export const Home = () => {
         title="FPV Racing Pilot"
         description="As an FPV drone racing enthusiast, I am deeply passionate about the dynamic world of drones, combining technology and adrenaline to push the boundaries of speed and precision. I proudly associate myself with the Drone Racing Federation (DRF), a pioneering initiative by Aiotize, aimed at uniting drone hobbyists, pilots, and professionals on a single platform to compete and excel."
         buttonText="Know More"
-        buttonLink="https://www.facebook.com/droneracingfederation"
+        buttonLink="/projects/fpv-racing"
         model={{
           type: 'laptop',
           alt: 'Smart Sparrow lesson builder',

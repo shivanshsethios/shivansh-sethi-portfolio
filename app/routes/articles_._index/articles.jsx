@@ -16,7 +16,7 @@ import styles from './articles.module.css';
 
 function ArticlesPost({ slug, frontmatter, timecode, index }) {
   const [hovered, setHovered] = useState(false);
-  const banner = './2022-01-06.png'
+  const banner = './2022-01-06.jpg'
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
   const { title, abstract, date, featured, link, type, img } = frontmatter;

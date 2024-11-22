@@ -5,7 +5,7 @@ import { deviceModels } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Image } from '~/components/image';
-import video from `~/assets/spr-motion.mp4`
+import video from `~/assets/fpv-racing-bg.png`
 import { useTheme } from '~/components/theme-provider';
 // import imgSrc from "~/assets/Aiotize_logo_large.png"
 import imgSrc from "~/assets/Aiotize_logo_large.jpeg"

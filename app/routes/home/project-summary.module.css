@@ -120,7 +120,7 @@
 }
 
 .content2 {
-  --textColumnWidth: 36%;
+  --textColumnWidth: 50%;
 
   width: 100%;
   max-width: var(--maxWidthL);

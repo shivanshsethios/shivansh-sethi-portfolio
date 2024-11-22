@@ -7,7 +7,11 @@ import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useParallax } from '~/hooks';
 import { forwardRef, useRef } from 'react';
+import katakana from '~/routes/home/katakana.svg';
+
 import { classes, cssProps, msToNum, numToMs } from '~/utils/style';
+import { useState } from 'react'
+import { useTheme } from '~/components/theme-provider';
 import styles from './project.module.css';
 
 const initDelay = 300;
@@ -20,6 +24,9 @@ export function ProjectHeader({
   roles,
   className,
 }) {
+  const [modelLoaded, setModelLoaded] = useState(true);
+  const { theme } = useTheme();
+  const svgOpacity = theme === 'light' ? 0.7 : 1;
   return (
     <Section className={classes(styles.header, className)} as="section">
       <div
@@ -45,19 +52,20 @@ export function ProjectHeader({
             </Button>
           )}
         </div>
-        {!!roles?.length && (
-          <ul className={styles.meta}>
-            {roles?.map((role, index) => (
-              <li
-                className={styles.metaItem}
-                style={cssProps({ delay: numToMs(initDelay + 300 + index * 140) })}
-                key={role}
-              >
-                <Text secondary>{role}</Text>
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className={styles.details2}>
+          <svg
+            type="project"
+            data-visible={true}
+            data-light={theme === 'light'}
+            style={cssProps({ opacity: svgOpacity })}
+            className={styles.svg_fpv_page}
+            data-device={"laptop"}
+            viewBox="0 0 1068 802"
+          >
+            <use href={`${katakana}#aiotize-fpv-page`} />
+          </svg>
+        </div>
+
       </div>
     </Section>
   );
