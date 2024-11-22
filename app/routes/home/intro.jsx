@@ -5,6 +5,7 @@ import { useTheme } from '~/components/theme-provider';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { VisuallyHidden } from '~/components/visually-hidden';
+import { useWindowSize } from '~/hooks';
 import { Link as RouterLink } from '@remix-run/react';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { Suspense, lazy, useEffect, useState } from 'react';
@@ -18,6 +19,8 @@ const DisplacementSphere = lazy(() =>
 );
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
+  const windowSize = useWindowSize();
+  const isMobile = windowSize.width <= 470;
   const { theme } = useTheme();
   const { disciplines } = config;
   const [disciplineIndex, setDisciplineIndex] = useState(0);
@@ -72,7 +75,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               <h1 className={styles.name} data-visible={visible} id={titleId}>
                 <DecoderText text={config.name} delay={500} />
               </h1>
-              <Heading level={0} as="h2" className={styles.title}>
+              <Heading level={isMobile ? 1 : 0} as="h2" className={styles.title}>
                 <VisuallyHidden className={styles.label}>
                   {`${config.role} + ${introLabel}`}
                 </VisuallyHidden>

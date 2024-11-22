@@ -102,7 +102,7 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
                 </>}
               <div className={styles.postFooter}>
                 <Button secondary iconHoverShift icon="chevron-right" as="div">
-                  Read article
+                  {type === "Video" ? "Watch Video" : "Read article"}
                 </Button>
               </div>
             </div>

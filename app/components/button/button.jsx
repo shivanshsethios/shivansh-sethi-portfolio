@@ -61,7 +61,6 @@ const ButtonContent = forwardRef(
         data-icon={icon}
         href={href}
         rel={rel || isExternal ? 'noopener noreferrer' : undefined}
-        target="_blank"
         disabled={disabled}
         ref={ref}
         {...rest}
