@@ -39,7 +39,7 @@ const roles = [
 ];
 
 export const meta = () => {
-  return baseMeta({ title, description, prefix: 'Projects' });
+  return baseMeta({ prefix: 'Shivansh Sethi | FPV Racing' });
 };
 
 export const FpvRacing = () => {
