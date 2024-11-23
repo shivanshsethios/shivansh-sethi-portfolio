@@ -179,6 +179,7 @@
   .backgroundScrim {
     --background1: color-mix(in lab, var(--background) var(--opacity), transparent);
     --background2: var(--background);
+    height: 101%;
 
     position: absolute;
     inset: 0;
