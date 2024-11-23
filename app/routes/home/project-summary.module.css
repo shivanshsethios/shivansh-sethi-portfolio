@@ -271,7 +271,7 @@
   
   @media (--mediaMobile), (--mediaMobileLS) {
     width: 110%;
-    margin: 10px 0 0 0;
+    margin: 10px 0 10px -10px;
   }
 }
 .svg_fpv {
@@ -296,7 +296,7 @@
     margin: 15px 0 15px 50px;
   }
   @media (--mediaMobile) {
-    margin: 15px 0 15px 150px;
+    margin: 10px 0 10px 55px;
     width: 65%;
     
   }

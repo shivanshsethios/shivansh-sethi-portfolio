@@ -43,6 +43,7 @@
 .timeline__content-image {
   width: 70px;
   display: flex;
+  align-items: center;
   justify-content: center;
   min-width: 70px;
 }

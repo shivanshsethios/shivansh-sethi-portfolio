@@ -1,10 +1,10 @@
 import config from '~/config.json';
 
 export const navLinks = [
-  {
-    label: 'Aiotize',
-    pathname: '/#aiotize',
-  },
+  // {
+  //   label: 'Aiotize',
+  //   pathname: '/#aiotize',
+  // },
   {
     label: 'About Me',
     pathname: '/#aboutme',

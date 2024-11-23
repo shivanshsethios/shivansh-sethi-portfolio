@@ -1,4 +1,4 @@
-import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
+import sprTexture from '~/assets/fpv-racing-bg.png';
 import { Footer } from '~/components/footer';
 import { Section } from '~/components/section';
 import { baseMeta } from '~/utils/meta';
