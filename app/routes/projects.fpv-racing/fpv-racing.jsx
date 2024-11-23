@@ -2,9 +2,9 @@ import backgroundSpr from '~/assets/fpv-racing-bg.png';
 import backgroundSpr2 from '~/assets/fpv-racing-bg2.png';
 import img1 from '~/assets/fpv-racing-img1.png';
 import img2 from '~/assets/fpv-racing-img2.png';
-import video from `~/assets/spr-motion.webm`
-import video2 from `~/assets/video1.webm`
-import video3 from `~/assets/video2.webm`
+import video from `~/assets/spr-motion.mp4`
+import video2 from `~/assets/video1.mp4`
+import video3 from `~/assets/video2.mp4`
 import { useScrollToHash, useWindowSize } from '~/hooks';
 import { Footer } from '~/components/footer';
 import { Button } from '~/components/button';
