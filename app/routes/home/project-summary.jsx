@@ -111,11 +111,11 @@ export function ProjectSummary({
           <>
             <div className={id==="aiotize" ? styles.hero__content_image : styles.hero__content_image2}>
               {
-                isVideo ? (
-                <Image
-                  raised
+                visible && isVideo ? (
+                <Image  
                   reveal
-                  className={styles.video}
+                  delay={100}
+                  // className={styles.video}
                   srcSet={`${video} 1280w, ${video} 2560w`}
                   width={1280}
                   height={800}
