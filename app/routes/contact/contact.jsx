@@ -3,7 +3,6 @@ import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Footer } from '~/components/footer';
 import { Heading } from '~/components/heading';
-import { Icon } from '~/components/icon';
 import { Input } from '~/components/input';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
@@ -13,12 +12,11 @@ import { useFormInput } from '~/hooks';
 import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
-import { Form, useActionData, useNavigation } from '@remix-run/react';
-import { json } from '@remix-run/cloudflare';
-import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { Form, useNavigation } from '@remix-run/react';
 import styles from './contact.module.css';
 import emailjs from '@emailjs/browser';
-import InlineComponent from './InlineComponent';
+import { useEffect } from 'react';
+import WhatsAppButton from '~/components/WhatsAppButton';
 
 export const meta = () => {
   return baseMeta({
@@ -30,7 +28,6 @@ export const meta = () => {
 
 const MAX_EMAIL_LENGTH = 512;
 const MAX_MESSAGE_LENGTH = 4096;
-const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 export const Contact = () => {
   const [emailSent, setEmailSent] = useState(false)
@@ -42,12 +39,36 @@ export const Contact = () => {
   const { state } = useNavigation();
   const form = useRef();
 
+  useEffect(() => {
+    const linkStyles = document.createElement('link');
+    linkStyles.href = 'https://assets.calendly.com/assets/external/widget.css';
+    linkStyles.rel = 'stylesheet';
+    document.head.appendChild(linkStyles);
+
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.head.removeChild(linkStyles);
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    Calendly.initPopupWidget({
+      url: 'https://calendly.com/aiotize',
+    });
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
     setSending(true)
     emailjs
-      .sendForm('service_lozxotf', 'template_br5betm', form.current, {
-        publicKey: 'kRZ7SrqYPPfbRmMD7',
+      .sendForm('service_jh0nhxx', 'template_vvw35vq', form.current, {
+        publicKey: '-68U5QIzJFIJcISYG',
       })
       .then(
         () => {
@@ -144,7 +165,7 @@ export const Contact = () => {
               data-status={status}
               style={getDelay(tokens.base.durationXS)}
             >
-              I’ll get back to you within a couple days, sit tight
+              I’ll get back to you ASAP
             </Text>
             <Button
               secondary
@@ -180,22 +201,22 @@ export const Contact = () => {
               >
                 <DecoderText text="Book a Meeting" start={status !== 'exited'} delay={300} />
               </Heading>
-
-
               <Button
-                className={styles.button2}
+                className={`${styles.button2} btn-inline`}
                 data-status={status}
-                data-sending={sending}
+                data-sending={false}
                 style={getDelay(tokens.base.durationM, initDelay)}
-                disabled={sending}
-                loading={sending}
+                disabled={false}
+                loading={false}
                 loadingText="Sending..."
                 icon="send"
+                onClick={handleClick}
                 type="submit"
               >
-                <InlineComponent />
+                <DecoderText delay={0} text="Use Calendly" />
               </Button>
             </Form>
+            <WhatsAppButton />
           </>
         )}
       </Transition>

@@ -20,11 +20,11 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="Hi there" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-  I’m Shivansh, currently based in Chandigarh, and I’m the founder of <Link href="https://aiotize.com">Aiotize</Link>, a company dedicated to revolutionizing drone logistics through IoT solutions. My work involves strategic planning, business development, and overseeing innovative drone service projects. I thrive on creating intelligent solutions that empower businesses and redefine industry standards.
-</Text>
-<Text className={styles.description} data-visible={visible} size="l" as="p">
-  I’m passionate about drone technology, IoT, and staying ahead of industry trends. In my free time, I enjoy experimenting with new drone applications, exploring advancements in AI, and connecting with others in the tech community. If you're working on something exciting or need consulting in drone logistics, feel free to reach out—I’m always open to new opportunities.
-</Text>
+      I’m Shivansh, currently based in Chandigarh, and I’m the founder of <Link href="https://aiotize.com">Aiotize</Link>, a company dedicated to revolutionizing drone logistics through IoT solutions. My work involves strategic planning, business development, and overseeing innovative drone service projects. I thrive on creating intelligent solutions that empower businesses and redefine industry standards.
+    </Text>
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      I’m passionate about drone technology, IoT, and staying ahead of industry trends. In my free time, I enjoy experimenting with new drone applications, exploring advancements in AI, and connecting with others in the tech community. If you're working on something exciting or need consulting in drone logistics, feel free to reach out—I’m always open to new opportunities.
+    </Text>
   </Fragment>
 );
 
@@ -47,16 +47,24 @@ export const Profile = ({ id, visible, sectionRef }) => {
         {({ visible, nodeRef }) => (
           <div className={styles.content} ref={nodeRef}>
             <div className={styles.column}>
+              
               <ProfileText visible={visible} titleId={titleId} />
+              <a
+                href="/Shivansh_Sethi_CV.pdf"
+                download="Shivansh_Sethi_CV.pdf"
+                className={`${styles.button} ${styles.secondary}`}
+                data-visible={visible}
+              >
               <Button
                 secondary
                 className={styles.button}
                 data-visible={visible}
-                href="/contact"
                 icon="send"
+                download="YourFileName.pdf"
               >
-                <DecoderText text="Send me a message" start={visible} delay={500} />
+                <DecoderText text="Download Resume" start={visible} delay={500} />
               </Button>
+              </a>
             </div>
             <div className={styles.column}>
               <div className={styles.tag} aria-hidden>
@@ -67,7 +75,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   collapseDelay={1000}
                 />
                 <div className={styles.tagText} data-visible={visible}>
-                <DecoderText text="About me" start={visible} delay={500} />
+                  <DecoderText text="About me" start={visible} delay={500} />
                 </div>
               </div>
               <div className={styles.image}>

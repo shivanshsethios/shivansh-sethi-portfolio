@@ -23,6 +23,19 @@ const Model = lazy(() =>
   import('~/components/model').then(module => ({ default: module.Model }))
 );
 
+const PitchEmbed = () => {
+  return (
+    <iframe
+      src="https://pitch.com/embed-link/r9hetz"
+      allow="fullscreen; clipboard-write"
+      allowFullScreen
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+    ></iframe>
+  );
+};
+
 export function ProjectSummary({
   id,
   visible: sectionVisible,
@@ -110,6 +123,34 @@ export function ProjectSummary({
         {model.type === 'laptop' && (
           <>
             <div className={id==="aiotize" ? styles.hero__content_image : styles.hero__content_image2}>
+            {/* {
+                id === "aiotize" ? (
+                  <PitchEmbed />
+                ) : (
+                  visible && isVideo ? (
+                    <Image
+                      reveal
+                      delay={100}
+                      srcSet={`${video} 1280w, ${video} 2560w`}
+                      width={1280}
+                      height={800}
+                      placeholder={video}
+                      alt=""
+                      sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+                    />
+                  ) : (
+                    <Image
+                      reveal
+                      delay={100}
+                      placeholder={imgSrc}
+                      srcSet={`${imgSrc} 100w, ${imgSrc} 20w`}
+                      width={360}
+                      height={1080}
+                      alt=""
+                    />
+                  )
+                )
+              } */}
               {
                 visible && isVideo ? (
                 <Image  
