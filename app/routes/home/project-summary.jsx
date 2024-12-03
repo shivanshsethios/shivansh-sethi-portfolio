@@ -152,7 +152,7 @@ export function ProjectSummary({
                 )
               } */}
               {
-                visible && isVideo ? (
+                visible && id === "project-2" ? (
                 <Image  
                   reveal
                   delay={100}

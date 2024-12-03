@@ -123,7 +123,7 @@ export const Home = () => {
         id="project-2"
         alternate
         sectionRef={projectTwo}
-        isVideo={true}
+        isVideo={false}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
         title="FPV Racing Pilot"
