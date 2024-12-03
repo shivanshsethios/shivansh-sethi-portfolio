@@ -22,6 +22,19 @@ import config from '~/config.json';
 import styles from './root.module.css';
 import './reset.module.css';
 import './global.module.css';
+import {
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import {
+  LiveReload,
+} from "@remix-run/react";
+
+export const meta: MetaFunction = () => ({
+  charset: "utf-8",
+  title: "Your App Title",
+  viewport: "width=device-width,initial-scale=1",
+});
 
 export const links = () => [
   {
@@ -103,6 +116,20 @@ export default function App() {
   return (
     <html lang="en">
       <head>
+      <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-CT3NW81Y84"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-CT3NW81Y84');
+            `,
+          }}
+        ></script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Theme color doesn't support oklch so I'm hard coding these hexes for now */}
