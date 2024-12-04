@@ -111,7 +111,7 @@ export default function App() {
       <head>
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-CT3NW81Y84"
+          src="https://www.googletagmanager.com/gtag/js?id=G-J16QWRR3SK"
         ></script>
         <script
           dangerouslySetInnerHTML={{
@@ -119,7 +119,7 @@ export default function App() {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-CT3NW81Y84');
+              gtag('config', 'G-J16QWRR3SK');
             `,
           }}
         ></script>
