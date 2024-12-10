@@ -3,7 +3,9 @@ import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Footer } from '~/components/footer';
 import { Heading } from '~/components/heading';
+import client from './SanityClient';
 import { Image } from '~/components/image';
+import imageUrlBuilder from '@sanity/image-url';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { useReducedMotion } from 'framer-motion';
@@ -14,25 +16,49 @@ import { formatDate } from '~/utils/date';
 import { classes, cssProps } from '~/utils/style';
 import styles from './articles.module.css';
 
-function ArticlesPost({ slug, frontmatter, timecode, index }) {
+const builder = imageUrlBuilder(client);
+
+const urlFor = (source) => builder.image(source);
+
+function ArticlesPost({ index, post }) {
   const [hovered, setHovered] = useState(false);
   const banner = './2022-01-06.jpg'
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
-  const { title, abstract, date, featured, link, type, img } = frontmatter;
-
-
-  useEffect(() => {
-    setDateTime(formatDate(date));
-  }, [date, dateTime]);
-
+  
   const handleMouseEnter = () => {
     setHovered(true);
   };
-
+  
   const handleMouseLeave = () => {
     setHovered(false);
   };
+  
+  const {
+    featured,
+    _createdAt: createdAt,
+    _rev: revision,
+    _id: id,
+    slug,
+    image: {
+      _type: imageType,
+      asset: { _ref: imageRef, _type: assetType } = {}
+    } = {},
+    publishedAt,
+    _type: postType,
+    link,
+    body = [],
+    title,
+    _updatedAt: updatedAt
+  } = post || {};
+
+  useEffect(() => {
+    setDateTime(formatDate(publishedAt));
+  }, [publishedAt, dateTime]);
+
+  const abstract = body[0] && body[0].children && body[0].children[0] ? body[0].children[0].text : 'Default text';
+
+  const imageUrl = imageRef ? urlFor({ _type: 'image', asset: { _ref: imageRef } }).url() : banner;
 
   return (
     <article
@@ -71,13 +97,13 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
             <div className={styles.postDetails}>
               <div aria-hidden className={styles.postDate}>
                 <Divider notchWidth="64px" notchHeight="8px" />
-                {`${dateTime} | ${type}`}
+                {`${dateTime} | ${slug}`}
               </div>
               {!featured && <>
                 <div className={styles.article_container}>
                   <div className={styles.article_container_image}>
                     <div className={styles.article_inner_container_image}>
-                      <img src={img} className={styles.article_image} />
+                      <img src={imageUrl} className={styles.article_image} />
                     </div>
                   </div>
                   <div className={styles.article_container_content}>
@@ -102,7 +128,7 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
                 </>}
               <div className={styles.postFooter}>
                 <Button secondary iconHoverShift icon="chevron-right" as="div">
-                  {type === "Video" ? "Watch Video" : "Read article"}
+                  {slug === "Video" ? "Watch Video" : "Read article"}
                 </Button>
               </div>
             </div>
@@ -118,13 +144,13 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
             <div className={styles.postDetails}>
               <div aria-hidden className={styles.postDate}>
                 <Divider notchWidth="64px" notchHeight="8px" />
-                {`${dateTime} | ${type}`}
+                {`${dateTime} | ${slug}`}
               </div>
               {!featured && <>
                 <div className={styles.article_container}>
                   <div className={styles.article_container_image}>
                     <div className={styles.article_inner_container_image}>
-                      <img src={img} className={styles.article_image} />
+                      <img src={imageUrl} className={styles.article_image} />
                     </div>
                   </div>
                   <div className={styles.article_container_content}>
@@ -187,10 +213,23 @@ function SkeletonPost({ index }) {
 }
 
 export function Articles() {
-  const { posts, featured } = useLoaderData();
   const { width } = useWindowSize();
+  const [posts, setPosts] = useState([])
+  const [featuredPostb, setFeaturedPost] = useState({})
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
+  useEffect(() => {
+    client
+      .fetch('*[_type == "post"]')
+      .then((data) =>{
+        const featuredPosta = data.filter(post => post.featured);
+        const posts = data.filter(post => !post.featured);
+        setPosts(posts)
+        setFeaturedPost(featuredPosta[0])
+        console.log(featuredPosta[0])
+      })
+      .catch(console.error);
+  }, []);
 
   const postsHeader = (
     <header className={styles.header}>
@@ -204,8 +243,9 @@ export function Articles() {
   const postList = (
     <div className={styles.list}>
       {!isSingleColumn && postsHeader}
-      {posts.map(({ slug, ...post }, index) => (
-        <ArticlesPost key={slug} slug={slug} index={index} {...post} />
+
+      {posts.map((post, index) => (
+        <ArticlesPost key={index} index={index} post={post} />
       ))}
       {Array(1)
         .fill()
@@ -215,7 +255,7 @@ export function Articles() {
     </div>
   );
 
-  const featuredPost = <ArticlesPost {...featured} />;
+  const featuredPost = <ArticlesPost index={1} post={featuredPostb} />;
 
   return (
     <article className={styles.articles}>
