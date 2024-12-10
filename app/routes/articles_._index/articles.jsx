@@ -223,7 +223,12 @@ export function Articles() {
       .then((data) =>{
         const featuredPosta = data.filter(post => post.featured);
         const posts = data.filter(post => !post.featured);
-        setPosts(posts)
+        const sortedPosts = posts.sort((a, b) => {
+          const dateA = new Date(a.publishedAt);
+          const dateB = new Date(b.publishedAt);
+          return dateB - dateA;
+        });
+        setPosts(sortedPosts)
         setFeaturedPost(featuredPosta[0])
       })
       .catch(console.error);
