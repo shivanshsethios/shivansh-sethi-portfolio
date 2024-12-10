@@ -72,12 +72,10 @@ export const Contact = () => {
       })
       .then(
         () => {
-          console.log('SUCCESS!');
           setEmailSent(true);
           setSending(false)
         },
         (error) => {
-          console.log('FAILED...', error.text);
           setSending(false)
         },
       );

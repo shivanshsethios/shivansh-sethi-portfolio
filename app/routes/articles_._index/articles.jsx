@@ -76,8 +76,7 @@ function ArticlesPost({ index, post }) {
           <Image
             noPauseButton
             play={!reduceMotion ? hovered : undefined}
-            src={banner}
-            placeholder={`${banner.split('.')[0]}-placeholder.jpg`}
+            src={imageUrl}
             alt=""
             role="presentation"
           />
@@ -226,7 +225,6 @@ export function Articles() {
         const posts = data.filter(post => !post.featured);
         setPosts(posts)
         setFeaturedPost(featuredPosta[0])
-        console.log(featuredPosta[0])
       })
       .catch(console.error);
   }, []);
