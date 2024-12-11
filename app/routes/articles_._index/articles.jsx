@@ -16,6 +16,19 @@ import { formatDate } from '~/utils/date';
 import { classes, cssProps } from '~/utils/style';
 import styles from './articles.module.css';
 
+function truncate(length, input) {
+  if (!input || typeof input !== 'string') {
+    return '';
+  }
+
+  const words = input.split(/\s+/);
+  if (words.length <= length) {
+    return input;
+  }
+
+  return words.slice(0, length).join(' ') + '...';
+}
+
 const builder = imageUrlBuilder(client);
 
 const urlFor = (source) => builder.image(source);
@@ -25,16 +38,16 @@ function ArticlesPost({ index, post }) {
   const banner = './2022-01-06.jpg'
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
-  
+
   const handleMouseEnter = () => {
     setHovered(true);
   };
-  
+
   const handleMouseLeave = () => {
     setHovered(false);
   };
-  
-  const {
+
+  let {
     featured,
     _createdAt: createdAt,
     _rev: revision,
@@ -47,16 +60,19 @@ function ArticlesPost({ index, post }) {
     publishedAt,
     _type: postType,
     link,
-    body = [],
+    body,
     title,
     _updatedAt: updatedAt
   } = post || {};
 
+  if (featured) {
+    body = truncate(55, body);
+    title = truncate(10, title);
+  }
+
   useEffect(() => {
     setDateTime(formatDate(publishedAt));
   }, [publishedAt, dateTime]);
-
-  const abstract = body[0] && body[0].children && body[0].children[0] ? body[0].children[0].text : 'Default text';
 
   const imageUrl = imageRef ? urlFor({ _type: 'image', asset: { _ref: imageRef } }).url() : banner;
 
@@ -110,7 +126,7 @@ function ArticlesPost({ index, post }) {
                       {title}
                     </Heading>
                     <Text size={featured ? 'l' : 's'} as="p">
-                      {abstract}
+                      {body}
                     </Text>
                   </div>
                 </div>
@@ -122,7 +138,7 @@ function ArticlesPost({ index, post }) {
                     {title}
                   </Heading>
                   <Text size={featured ? 'l' : 's'} as="p">
-                    {abstract}
+                    {body}
                   </Text>
                 </>}
               <div className={styles.postFooter}>
@@ -157,12 +173,21 @@ function ArticlesPost({ index, post }) {
                       {title}
                     </Heading>
                     <Text size={featured ? 'l' : 's'} as="p">
-                      {abstract}
+                      {body}
                     </Text>
                   </div>
                 </div>
               </>
               }
+              {
+                featured && <>
+                  <Heading as="h2" level={featured ? 2 : 4}>
+                    {title}
+                  </Heading>
+                  <Text size={featured ? 'l' : 's'} as="p">
+                    {body}
+                  </Text>
+                </>}
             </div>
           </div>
         )
@@ -220,7 +245,7 @@ export function Articles() {
   useEffect(() => {
     client
       .fetch('*[_type == "post"]')
-      .then((data) =>{
+      .then((data) => {
         const featuredPosta = data.filter(post => post.featured);
         const posts = data.filter(post => !post.featured);
         const sortedPosts = posts.sort((a, b) => {
