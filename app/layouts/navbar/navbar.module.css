@@ -31,6 +31,8 @@
     z-index: var(--zIndex2);
 
     @media (--mediaMobile) {
+      width: 120%;
+      margin-top: -10px;
       padding-bottom: var(--spaceS);
     }
   }
