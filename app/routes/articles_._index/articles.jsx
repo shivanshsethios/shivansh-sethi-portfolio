@@ -198,52 +198,25 @@ function ArticlesPost({ index, post }) {
 
 function SkeletonPost({ index }) {
   return (
-    <article
-      aria-hidden="true"
-      className={classes(styles.post, styles.skeleton)}
-      data-featured="false"
-      style={index !== undefined ? cssProps({ delay: index * 100 + 200 }) : undefined}
-    >
-      <div className={styles.postLink}>
-        <div className={styles.postDetails}>
-          <div aria-hidden className={styles.postDate}>
-            <Divider notchWidth="64px" notchHeight="8px" />
-            Coming soon...
-          </div>
-          <Heading
-            className={styles.skeletonBone}
-            as="h2"
-            level={4}
-            style={{ height: 24, width: '70%' }}
-          />
-          <Text
-            className={styles.skeletonBone}
-            size="s"
-            as="p"
-            style={{ height: 90, width: '100%' }}
-          />
-          <div className={styles.postFooter}>
-            <Button secondary iconHoverShift icon="chevron-right" as="div">
-              Read more
-            </Button>
-            <Text className={styles.timecode} size="s">
-              00:00:00:00
-            </Text>
-          </div>
-        </div>
+    <div className={styles.skeletonPost}>
+      <div className={styles.skeletonTextWrapper}>
+        <span className={styles.skeletonText}>Getting articles...</span>
       </div>
-    </article>
+    </div>
   );
 }
 
 export function Articles() {
   const { width } = useWindowSize();
   const [posts, setPosts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const [featuredPostb, setFeaturedPost] = useState({})
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
   useEffect(() => {
-    client
+    const getArticles = async () =>{
+      setIsLoading(true)
+      client
       .fetch('*[_type == "post"]')
       .then((data) => {
         const featuredPosta = data.filter(post => post.featured);
@@ -255,8 +228,11 @@ export function Articles() {
         });
         setPosts(sortedPosts)
         setFeaturedPost(featuredPosta[0])
+        setIsLoading(false)
       })
       .catch(console.error);
+    }
+    getArticles()
   }, []);
 
   const postsHeader = (
@@ -275,11 +251,6 @@ export function Articles() {
       {posts.map((post, index) => (
         <ArticlesPost key={index} index={index} post={post} />
       ))}
-      {Array(1)
-        .fill()
-        .map((skeleton, index) => (
-          <SkeletonPost key={index} index={index} />
-        ))}
     </div>
   );
 
@@ -288,21 +259,29 @@ export function Articles() {
   return (
     <article className={styles.articles}>
       <Section className={styles.content}>
-        {!isSingleColumn && (
+        {
+        isLoading && <SkeletonPost />
+        }
+        {!isLoading && !isSingleColumn && (
+        <>
           <div className={styles.grid}>
             {postList}
             {featuredPost}
           </div>
+            <Footer />
+        </>
         )}
-        {isSingleColumn && (
+        {!isLoading && isSingleColumn && (
+        <>
           <div className={styles.grid}>
             {postsHeader}
             {featuredPost}
             {postList}
           </div>
+      <Footer />
+        </>
         )}
       </Section>
-      <Footer />
     </article>
   );
 }
