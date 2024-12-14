@@ -305,6 +305,7 @@
 
 .svg2 {
   opacity: 0;
+  max-width: 705px;
   transition: opacity 1200ms ease 1400ms;
   fill: var(--textTitle);
 
@@ -315,9 +316,9 @@
   &[data-device='laptop'] {
     position: absolute;
     width: 70%;
-    right: 0;
     bottom: 30%;
-    transform: translateY(50%);
+    left: 50%;
+    transform: translate(-40%, 50%);
 
     @media (--mediaTablet) {
       width: 120%;
@@ -348,6 +349,7 @@
   opacity: 0;
   transition: opacity 1200ms ease 1400ms;
   fill: var(--textTitle);
+  max-width: 80px;
   position: relative;
   width: 8%;
 

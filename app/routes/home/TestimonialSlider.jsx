@@ -129,12 +129,14 @@ const TestimonialSlider = () => {
   return (
     <>
       <div ref={headerRef} className="testimonial-slider">
-        {renderKatakana("laptop", true)}
-        <div className="testimonial-container" onClick={() => window.open(testimonials[currentIndex].linkedin, '_blank')} style={{ cursor: 'pointer' }}>
-          <p className="testimonial-text">"{testimonials[currentIndex].message}"</p>
-          <img className="testimonial-image" src={testimonials[currentIndex].imgSrc} />
-          <h3 className="testimonial-author">{testimonials[currentIndex].name}</h3>
-          <p className="testimonial-role">{testimonials[currentIndex].role}</p>
+        <div>
+          {renderKatakana("laptop", true)}
+          <div className="testimonial-container" onClick={() => window.open(testimonials[currentIndex].linkedin, '_blank')} style={{ cursor: 'pointer' }}>
+            <p className="testimonial-text">"{testimonials[currentIndex].message}"</p>
+            <img className="testimonial-image" src={testimonials[currentIndex].imgSrc} />
+            <h3 className="testimonial-author">{testimonials[currentIndex].name}</h3>
+            <p className="testimonial-role">{testimonials[currentIndex].role}</p>
+          </div>
         </div>
       </div>
     </>

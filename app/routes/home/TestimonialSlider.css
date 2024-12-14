@@ -2,6 +2,7 @@
     width: 80%;
     margin: auto;
     display: flex;
+    align-items: center;
     min-height: 300px;
     text-align: center;
     justify-content: center;
@@ -18,6 +19,7 @@
   
   .testimonial-container {
     min-height: 220px;
+    max-width: 1165px;
     display: flex;
     flex-direction: column;
     align-items: center;
