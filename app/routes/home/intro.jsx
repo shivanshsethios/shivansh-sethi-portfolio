@@ -11,9 +11,12 @@ import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { cssProps } from '~/utils/style';
 import config from '~/config.json';
-import { DisplacementSphere } from './displacement-sphere';
 import { useHydrated } from '~/hooks/useHydrated';
 import styles from './intro.module.css';
+
+const DisplacementSphere = lazy(() =>
+  import('./displacement-sphere').then(module => ({ default: module.DisplacementSphere }))
+);
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
   const windowSize = useWindowSize();
@@ -64,7 +67,9 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
         {({ visible, status }) => (
           <>
             {isHydrated && (
-                <DisplacementSphere />
+                              <Suspense>
+                              <DisplacementSphere />
+                            </Suspense>
             )}
             <header className={styles.text}>
               <h1 className={styles.name} data-visible={visible} id={titleId}>

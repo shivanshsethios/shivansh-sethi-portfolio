@@ -13,7 +13,7 @@ import { createCookieSessionStorage, json } from "@remix-run/cloudflare";
 import { ThemeProvider, themeStyles } from "~/components/theme-provider";
 import GothamBook from "~/assets/fonts/gotham-book.woff2";
 import GothamMedium from "~/assets/fonts/gotham-medium.woff2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Error } from "~/layouts/error";
 import { VisuallyHidden } from "~/components/visually-hidden";
 import { Navbar } from "~/layouts/navbar";
@@ -106,23 +106,15 @@ export default function App() {
     );
   }
 
+  const [googleAnalyticsScripts, setGoogleAnalyticsScripts] = useState(false);
+
+  useEffect(() => {
+    setGoogleAnalyticsScripts(true);
+  }, []);
+
   return (
     <html lang="en">
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-70WG2JFH4G"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-70WG2JFH4G');
-            `,
-          }}
-        ></script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Theme color doesn't support oklch so I'm hard coding these hexes for now */}
@@ -137,6 +129,24 @@ export default function App() {
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />
+        {googleAnalyticsScripts && (
+          <>
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-70WG2JFH4G"
+            ></script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-70WG2JFH4G');
+                `,
+              }}
+            ></script>
+          </>
+        )}
         <link rel="canonical" href={canonicalUrl} />
       </head>
       <body data-theme={theme}>
