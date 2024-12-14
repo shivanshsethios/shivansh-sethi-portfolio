@@ -77,12 +77,12 @@
   }
 
   @media (--singleColumnWidth), (--mediaMobileLS) {
+    max-width: 60vw;
     padding-right: 0;
     grid-template-columns: 100%;
   }
 
   @media (--mediaMobile), (--mediaMobileLS) {
-    max-width: 60vw;
     gap: var(--space2XL);
     padding-bottom: var(--spaceXL);
     padding-top: var(--mobileNavOffset);

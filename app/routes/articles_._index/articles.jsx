@@ -35,7 +35,6 @@ const urlFor = (source) => builder.image(source);
 
 function ArticlesPost({ index, post }) {
   const [hovered, setHovered] = useState(false);
-  const banner = './2022-01-06.jpg'
   const [dateTime, setDateTime] = useState(null);
   const reduceMotion = useReducedMotion();
 
@@ -74,7 +73,7 @@ function ArticlesPost({ index, post }) {
     setDateTime(formatDate(publishedAt));
   }, [publishedAt, dateTime]);
 
-  const imageUrl = imageRef ? urlFor({ _type: 'image', asset: { _ref: imageRef } }).url() : banner;
+  const imageUrl = imageRef && urlFor({ _type: 'image', asset: { _ref: imageRef } }).url();
 
   return (
     <article
@@ -87,7 +86,7 @@ function ArticlesPost({ index, post }) {
           Featured
         </Text>
       )}
-      {featured && !!banner && (
+      {featured && (
         <div className={styles.postImage}>
           <Image
             noPauseButton
