@@ -105,6 +105,12 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+  @media (--mediaMobileSm) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
 
 .heading {

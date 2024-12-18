@@ -5,9 +5,8 @@ import { deviceModels } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Image } from '~/components/image';
-import video from `~/assets/fpv-racing-bg.png`
 import { useTheme } from '~/components/theme-provider';
-// import imgSrc from "~/assets/Aiotize_logo_large.png"
+import video from `~/assets/fpv-racing-bg.png`
 import imgSrc from "~/assets/Aiotize_logo_large.jpeg"
 import { Transition } from '~/components/transition';
 import { Loader } from '~/components/loader';
@@ -123,36 +122,8 @@ export function ProjectSummary({
         {model.type === 'laptop' && (
           <>
             <div className={id==="aiotize" ? styles.hero__content_image : styles.hero__content_image2}>
-            {/* {
-                id === "aiotize" ? (
-                  <PitchEmbed />
-                ) : (
-                  visible && isVideo ? (
-                    <Image
-                      reveal
-                      delay={100}
-                      srcSet={`${video} 1280w, ${video} 2560w`}
-                      width={1280}
-                      height={800}
-                      placeholder={video}
-                      alt=""
-                      sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
-                    />
-                  ) : (
-                    <Image
-                      reveal
-                      delay={100}
-                      placeholder={imgSrc}
-                      srcSet={`${imgSrc} 100w, ${imgSrc} 20w`}
-                      width={360}
-                      height={1080}
-                      alt=""
-                    />
-                  )
-                )
-              } */}
               {
-                visible && id === "project-2" ? (
+                id === "project-2" ? (
                 <Image  
                   reveal
                   delay={100}
