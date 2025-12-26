@@ -44,6 +44,9 @@ export const Home = () => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
+  const projectOnea = useRef();
+  const projectOneb = useRef();
+  const projectOnec = useRef();
   const projectTwo = useRef();
   const details = useRef();
   const timeline = useRef();
@@ -51,7 +54,7 @@ export const Home = () => {
   const footer = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, details, projectTwo, timeline, testimonials, footer];
+    const sections = [intro, projectOne, projectOnea, projectOneb, projectOnec, details, projectTwo, timeline, testimonials, footer];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -99,6 +102,8 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
+        knowmore
+        katakanavisible
         title="Revolutionizing IoT Solutions"
         description="Empowering businesses with cutting-edge IoT technology for smarter operations"
         buttonText="Know More"
@@ -113,6 +118,77 @@ export const Home = () => {
             },
           ],
         }}
+      />
+      <ProjectSummary
+        id="aiotize-2-a"
+        sectionRef={projectOnea}
+        visible={visibleSections.includes(projectOnea.current)}
+        index={1}
+        title="IIM Bangalore Accelerator Alumni"
+        description="Recognized for building high-impact, innovation-driven technology ventures"
+        buttonText="Know More"
+        imgsrc="~/assets/iim-a.png"
+        buttonLink="https://aiotize.com/"
+        custom={true}
+        customdivider="NSRCEL"
+        model={{
+          type: 'laptop',
+          alt: 'Smart Sparrow lesson builder',
+          textures: [
+            {
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexture,
+            },
+          ],
+        }}
+        alternate={true}
+      />
+      <ProjectSummary
+        id="aiotize-2-b"
+        sectionRef={projectOneb}
+        visible={visibleSections.includes(projectOneb.current)}
+        index={1}
+        imgsrc="~/assets/iim-b.png"
+        title="IIM Ahmedabad Accelerator Alumni"
+        description="Selected among promising startups focused on scalable and sustainable growth"
+        buttonText="Know More"
+        buttonLink="https://aiotize.com/"
+        custom={true}
+        customdivider="CIIE"
+        model={{
+          type: 'laptop',
+          alt: 'Smart Sparrow lesson builder',
+          textures: [
+            {
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexture,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="aiotize-2-c"
+        sectionRef={projectOnec}
+        visible={visibleSections.includes(projectOnec.current)}
+        index={1}
+        imgsrc="~/assets/expo.png"
+        title="Indian Delegate"
+        description="Represented India on a global stage, showcasing innovation and entrepreneurship"
+        buttonText="Expo 2020 Dubai"
+        buttonLink="https://aiotize.com/"
+        custom={true}
+        customdivider="Expo 2020 Dubai"
+        model={{
+          type: 'laptop',
+          alt: 'Smart Sparrow lesson builder',
+          textures: [
+            {
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexture,
+            },
+          ],
+        }}
+        alternate={true}
       />
       <Profile
         sectionRef={details}

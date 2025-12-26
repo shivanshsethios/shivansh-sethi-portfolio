@@ -4,6 +4,7 @@ import GothamBookItalic from '~/assets/fonts/gotham-book-italic.woff2';
 import GothamBook from '~/assets/fonts/gotham-book.woff2';
 import GothamMediumItalic from '~/assets/fonts/gotham-medium-italic.woff2';
 import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
+import NebulaRegular from '~/assets/fonts/Nebula-Regular.otf';
 import IPAGothic from '~/assets/fonts/ipa-gothic.woff2';
 import { createContext, useContext } from 'react';
 import { classes, media } from '~/utils/style';
@@ -130,6 +131,14 @@ const fontStyles = squish(`
     src: url(${GothamBookItalic}) format('woff2');
     font-display: block;
     font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Nebula';
+    src: url(${NebulaRegular}) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
   }
 
   @font-face {

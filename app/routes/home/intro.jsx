@@ -67,9 +67,9 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
         {({ visible, status }) => (
           <>
             {isHydrated && (
-                              <Suspense>
-                              <DisplacementSphere />
-                            </Suspense>
+              <Suspense>
+                <DisplacementSphere />
+              </Suspense>
             )}
             <header className={styles.text}>
               <h1 className={styles.name} data-visible={visible} id={titleId}>
@@ -85,7 +85,17 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                     data-status={status}
                     style={cssProps({ delay: tokens.base.durationXS })}
                   >
-                    {config.role}
+                    <span>
+                      {config.role.split(',')[0]},
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: 'Nebula, sans-serif',
+                        marginLeft: '0.25em',
+                      }}
+                    >
+                      {config.role.split(',')[1]?.trim()}
+                    </span>
                   </span>
                   <span className={styles.line} data-status={status} />
                 </span>
@@ -104,7 +114,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                           className={styles.word}
                           data-plus={true}
                           data-status={status}
-                          style={cssProps({ delay: tokens.base.durationL })}
+                          style={{
+                            ...cssProps({ delay: tokens.base.durationL }),
+                            fontSize: 'clamp(1.3rem, 5vw, 3.8rem)',
+                          }}
+                        // style={cssProps({ delay: tokens.base.durationL })}
                         >
                           {item}
                         </span>

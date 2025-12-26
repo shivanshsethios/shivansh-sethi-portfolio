@@ -7,7 +7,10 @@ import { Text } from '~/components/text';
 import { Image } from '~/components/image';
 import { useTheme } from '~/components/theme-provider';
 import video from `~/assets/fpv-racing-bg.png`
-import imgSrc from "~/assets/Aiotize_logo_large.jpeg"
+import imgSrc from "~/assets/Aiotize_logo_large.png"
+import imgSrc2 from "~/assets/expo.png"
+import imgSrc3 from "~/assets/iim-a.png"
+import imgSrc4 from "~/assets/iim-b.png"
 import { Transition } from '~/components/transition';
 import { Loader } from '~/components/loader';
 import { useWindowSize } from '~/hooks';
@@ -44,9 +47,14 @@ export function ProjectSummary({
   title,
   description,
   model,
+  katakanavisible,
   buttonText,
   buttonLink,
+  imgsrc,
   alternate,
+  knowmore,
+  custom,
+  customdivider,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -65,7 +73,7 @@ export function ProjectSummary({
     setModelLoaded(true);
   }
 
-  function renderKatakana(device, visible) {
+  function renderkatakana(device, visible) {
     return (
       <svg
         type="project"
@@ -81,7 +89,7 @@ export function ProjectSummary({
     );
   }
 
-  function renderDetails(visible) {
+  function renderDetails(visible, custom, customdivider) {
     return (
       <div className={styles.details}>
         <div aria-hidden className={styles.index}>
@@ -92,7 +100,7 @@ export function ProjectSummary({
             collapseDelay={1000}
           />
           <div className={styles.tagText} data-visible={visible}>
-            <DecoderText text={id === "aiotize" ? "Aiotize" : "Drone Racing"} start={visible} delay={500} />
+            <DecoderText text={id.startsWith('aiotize') ? (custom ? customdivider : "Aiotize") : "Drone Racing"} start={visible} delay={500} />
           </div>
         </div>
         <Heading
@@ -107,53 +115,85 @@ export function ProjectSummary({
         <Text className={styles.description} data-visible={visible} as="p">
           {description}
         </Text>
-        <div className={styles.button} data-visible={visible}>
+        {knowmore && <div className={styles.button} data-visible={visible}>
           <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
             <DecoderText text={buttonText} start={visible} delay={500} />
           </Button>
-        </div>
+        </div>}
       </div>
     );
   }
 
-  function renderPreview(visible) {
+  function renderPreview(visible, alternate, katakanavisible, imgsrc) {
+    // console.log(katakanavisible)
     return (
-      <div className={styles.preview}>
+      <div className={alternate ? styles.preview2 : styles.preview}>
         {model.type === 'laptop' && (
           <>
-            <div className={id==="aiotize" ? styles.hero__content_image : styles.hero__content_image2}>
+            {/* <div className={id.startsWith === "aiotize" ? styles.hero__content_image : styles.hero__content_image2}> */}
+            <div
+              className={
+                id?.startsWith('aiotize')
+                  ? id?.startsWith('aiotize-2')
+                    ? styles.hero__content_image3
+                    : styles.hero__content_image
+                  : styles.hero__content_image2
+              }
+            >
               {
                 id === "project-2" ? (
-                <Image  
-                  reveal
-                  delay={100}
-                  // className={styles.video}
-                  srcSet={`${video} 1280w, ${video} 2560w`}
-                  width={1280}
-                  height={800}
-                  placeholder={video}
-                  alt=""
-                  sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
-                />
-              ) : (
-                <Image
-                  reveal
-                  delay={100}
-                  placeholder={imgSrc}
-                  srcSet={`${imgSrc} 100w, ${imgSrc}  20w`}
-                  width={360}
-                  height={1080}
-                  alt=""
-                />
-              )
-            }
-            {renderKatakana('laptop', visible)}
+                  <Image
+                    reveal
+                    delay={100}
+                    // className={styles.video}
+                    srcSet={`${video} 1280w, ${video} 2560w`}
+                    width={1280}
+                    height={800}
+                    placeholder={video}
+                    alt=""
+                    sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+                  />
+                ) : (
+                  <Image
+                    reveal
+                    delay={100}
+                    placeholder={
+                      imgsrc
+                        ? imgsrc === '~/assets/expo.png'
+                          ? imgSrc2
+                          : imgsrc === '~/assets/iim-b.png'
+                            ? imgSrc3
+                            : imgSrc4
+                        : imgSrc
+                    }
+                    srcSet={`${imgsrc
+                        ? imgsrc === '~/assets/expo.png'
+                          ? imgSrc2
+                          : imgsrc === '~/assets/iim-b.png'
+                            ? imgSrc3
+                            : imgSrc4
+                        : imgSrc
+                      } 100w, ${imgsrc
+                        ? imgsrc === '~/assets/expo.png'
+                          ? imgSrc2
+                          : imgsrc === '~/assets/iim-b.png'
+                            ? imgSrc3
+                            : imgSrc4
+                        : imgSrc
+                      } 20w`}
+                    width={360}
+                    height={1080}
+                    alt=""
+                  />
+                )
+              }
+              { katakanavisible && renderkatakana('laptop', visible)}
             </div>
           </>
         )}
         {model.type === 'phone' && (
           <>
-            {renderKatakana('phone', visible)}
+            {renderkatakana('phone', visible)}
             <div className={styles.model} data-device="phone">
               {!modelLoaded && (
                 <Loader center className={styles.loader} data-visible={visible} />
@@ -196,7 +236,7 @@ export function ProjectSummary({
 
   return (
     <Section
-      className={id==="aiotize" ? styles.summary : styles.summary2}
+      className={id.startsWith('aiotize') ? styles.summary : styles.summary2}
       data-alternate={alternate}
       data-first={index === 1}
       onFocus={() => setFocused(true)}
@@ -208,20 +248,28 @@ export function ProjectSummary({
       tabIndex={-1}
       {...rest}
     >
-      <div className={id==="aiotize" ? styles.content : styles.content2}>
+      <div
+        className={
+          id?.startsWith('aiotize')
+            ? id?.startsWith('aiotize-2')
+              ? styles.content3
+              : styles.content
+            : styles.content2
+        }
+      >
         <Transition in={sectionVisible || focused}>
           {({ visible }) => (
             <>
               {!alternate && !isMobile && (
                 <>
-                  {renderDetails(visible)}
-                  {renderPreview(visible)}
+                  {renderDetails(visible, custom, customdivider)}
+                  {renderPreview(visible, alternate, katakanavisible, imgsrc)}
                 </>
               )}
               {(alternate || isMobile) && (
                 <>
-                  {renderPreview(visible)}
-                  {renderDetails(visible)}
+                  {renderPreview(visible, alternate, katakanavisible, imgsrc)}
+                  {renderDetails(visible, custom, customdivider)}
                 </>
               )}
             </>
