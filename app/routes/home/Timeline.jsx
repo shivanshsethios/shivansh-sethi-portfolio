@@ -16,7 +16,7 @@ const timelineData = [
     dateSmall: "Aug '18 - Present",
     company: "Aiotize",
     location: "Chandigarh, Chandigarh, India",
-    imgSrc: "./Aiotize_logo.png",
+    imgSrc: "/Aiotize_logo.png",
   },
   {
     title: "Product Specialist",
@@ -25,7 +25,7 @@ const timelineData = [
     dateSmall: "Aug '18 - Feb '19",
     company: "JungleWorks",
     location: "Chandigarh, India",
-    imgSrc: "./JungleWorks_logo.png",
+    imgSrc: "/JungleWorks_logo.png",
   },
   {
     title: "Application Engineer",
@@ -34,7 +34,7 @@ const timelineData = [
     dateSmall: "May '17 - Jul '18",
     company: "HCL Technologies",
     location: "Sector 126 SEZ NOIDA, India",
-    imgSrc: "./HCLTech_logo.png",
+    imgSrc: "/HCLTech_logo.png",
   },
   {
     title: "Software Developer Intern",
@@ -43,7 +43,7 @@ const timelineData = [
     dateSmall: "Dec '16 - Apr '17",
     company: "Capgemini",
     location: "Pune, Maharashtra, India",
-    imgSrc: "./Capegemini.png",
+    imgSrc: "/Capgemini.png",
   },
   {
     title: "Event Manager",
@@ -52,7 +52,7 @@ const timelineData = [
     dateSmall: "Dec '10 - Mar '15",
     company: "Picadily Hotels",
     location: "Chandigarh Area, India",
-    imgSrc: "./PicadilyHotels_logo.png",
+    imgSrc: "/PiccadillyHotels_logo.png",
   },
   {
     title: "Bachelor's in ECE",
@@ -61,7 +61,7 @@ const timelineData = [
     dateSmall: "'12 - '16",
     company: "Chitkara University",
     location: "India",
-    imgSrc: "./Chitkara_logo.png",
+    imgSrc: "/Chitkara_logo.png",
   },
   {
     title: "Higher Secondary",
@@ -70,7 +70,7 @@ const timelineData = [
     dateSmall: "'10 - '12",
     company: "St. Peter's School",
     location: "Chandigarh, India",
-    imgSrc: "./School_logo.png",
+    imgSrc: "/School_logo.png",
   }
 ];
 
